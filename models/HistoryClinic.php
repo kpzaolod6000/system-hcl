@@ -78,7 +78,7 @@ class HistoryClinic extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nro_history_clinic' => 'Nro History Clinic',
+            'nro_history_clinic' => Yii::t('fua', 'Nro Historia Clinica'),
             'date_entry' => 'Date Entry',
             'addres' => 'Addres',
             'nro_phone' => 'Nro Phone',

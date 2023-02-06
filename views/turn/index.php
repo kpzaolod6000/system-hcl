@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name_turn',
             'hour_begin',
             'hour_end',
-            'created_by',
+            //'created_by', 
             //'created_date',
             //'modified_by',
             //'modified_date',

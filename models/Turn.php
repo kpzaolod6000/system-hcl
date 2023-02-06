@@ -65,9 +65,9 @@ class Turn extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name_turn' => 'Name Turn',
+            'name_turn' => Yii::t('turn', 'name_turn'),
             'hour_begin' => Yii::t('turn', 'hour_begin'),
-            'hour_end' => 'Hour End',
+            'hour_end' => Yii::t('turn', 'hour_end'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',

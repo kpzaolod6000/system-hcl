@@ -1,0 +1,22 @@
+<?php 
+return [
+        'id',
+        'nro_history_clinic',
+        'date_entry',
+        'addres',
+        'nro_phone',
+        'profession',
+        'ocupation',
+        'religion',
+        'procedence',
+        'id_type_sure',
+        'id_marital_status',
+        'id_instruction_grade',
+        'id_patient',
+        'id_patient_comp',
+        //'created_by',
+        //'created_date',
+        //'modified_by',
+        //'modified_date',
+        ];
+?>
