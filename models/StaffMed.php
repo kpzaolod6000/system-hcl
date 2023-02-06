@@ -70,13 +70,13 @@ class StaffMed extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'cod_staff_med' => 'Cod Staff Med',
-            'name_staff_med' => 'Name Staff Med',
-            'max_q' => 'Max Q',
-            'q_issued' => 'Q Issued',
-            'q_slope' => 'Q Slope',
-            'id_prof' => 'Id Prof',
+            'id' => Yii::t('staff_med', 'id'),
+            'cod_staff_med' => Yii::t('staff_med', 'cod_staff_med'),
+            'name_staff_med' => Yii::t('staff_med', 'name_staff_med'),
+            'max_q' => Yii::t('staff_med', 'max_q'),
+            'q_issued' => Yii::t('staff_med', 'q_issued'),
+            'q_slope' => Yii::t('staff_med', 'q_slope'),
+            'id_prof' => Yii::t('staff_med', 'id_prof'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',

@@ -31,8 +31,8 @@ class Fua extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created','modified'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified',
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_date','modified_date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_by',
                 ],
                 'value' => new Expression('NOW()'),
             ],
@@ -72,14 +72,14 @@ class Fua extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'type_doc' => Yii::t('fua', 'Tipo de documento'),
-            'nro_doc' => Yii::t('fua', 'Numero de documento'),
-            'nro_hcl' => Yii::t('fua', 'Historia Clinica'),
-            'cod_sure' => Yii::t('fua', 'Codigo de seguro'),
-            'date_attention' => Yii::t('fua', 'Fecha de atencion'),
-            'nro_ref' => Yii::t('fua', 'Numero de referencia'),
-            'id_ipress' => Yii::t('fua', 'Codigo IPRESS'),
+            'id' => Yii::t('fua', 'id'),
+            'type_doc' => Yii::t('fua', 'type_doc'),
+            'nro_doc' => Yii::t('fua', 'nro_doc'),
+            'nro_hcl' => Yii::t('fua', 'nro_hcl'),
+            'cod_sure' => Yii::t('fua', 'cod_sure'),
+            'date_attention' => Yii::t('fua', 'datte_attention'),
+            'nro_ref' => Yii::t('fua', 'nro_ref'),
+            'id_ipress' => Yii::t('fua', 'id_ipress'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',

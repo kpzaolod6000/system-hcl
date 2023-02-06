@@ -70,6 +70,8 @@ class TurnController extends Controller
         $model = new Turn();
 
         if ($this->request->isPost) {
+            //print_r($this->request->post());
+            //exit;
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }

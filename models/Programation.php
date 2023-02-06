@@ -65,10 +65,10 @@ class Programation extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'date_attention' => 'Date Attention',
-            'id_services_personal' => 'Id Services Personal',
-            'id_turn' => 'Id Turn',
+            'id' => Yii::t('programation', 'id'),
+            'date_attention' => Yii::t('programation', 'date_attention'),
+            'id_services_personal' => Yii::t('programation', 'id_services_personal'),
+            'id_turn' => Yii::t('programation', 'id_turn'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',

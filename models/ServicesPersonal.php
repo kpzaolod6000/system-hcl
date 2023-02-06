@@ -59,9 +59,9 @@ class ServicesPersonal extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'id_services' => 'Id Services',
-            'id_staff_med' => 'Id Staff Med',
+            'id' => Yii::t('services_personal', 'id'),
+            'id_services' => Yii::t('services_personal', 'id_services'),
+            'id_staff_med' => Yii::t('services_personal', 'id_staff_med'),
         ];
     }
 }

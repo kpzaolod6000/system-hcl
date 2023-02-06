@@ -70,14 +70,14 @@ class Services extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'type' => 'Type',
-            'ups' => 'Ups',
-            'ups_s' => 'Ups S',
-            'max_cp' => 'Max Cp',
-            'max_am' => 'Max Am',
-            'max_pm' => 'Max Pm',
+            'id' => Yii::t('services', 'id'),
+            'name' => Yii::t('services', 'name'),
+            'type' => Yii::t('services', 'type'),
+            'ups' => Yii::t('services', 'ups'),
+            'ups_s' => Yii::t('services', 'ups_s'),
+            'max_cp' => Yii::t('services', 'max_cp'),
+            'max_am' => Yii::t('services', 'max_am'),
+            'max_pm' => Yii::t('services', 'max_pm'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',

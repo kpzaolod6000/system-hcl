@@ -32,8 +32,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name_prof',
             'cod_col',
-            'created_by',
-            'created_date',
+            //'created_by',
+            //'created_date',
             //'modified_by',
             //'modified_date',
             [

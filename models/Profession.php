@@ -66,9 +66,9 @@ class Profession extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name_prof' => 'Name Prof',
-            'cod_col' => 'Cod Col',
+            'id' => Yii::t('profession', 'id'),
+            'name_prof' => Yii::t('profession', 'name_prof'),
+            'cod_col' => Yii::t('profession', 'cod_col'),
             'created_by' => 'Created By',
             'created_date' => 'Created Date',
             'modified_by' => 'Modified By',
