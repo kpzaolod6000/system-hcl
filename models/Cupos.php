@@ -40,8 +40,8 @@ class Cupos extends \yii\db\ActiveRecord
             [
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created','modified'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified',
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_date','modified_date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_date',
                 ],
                 'value' => new Expression('NOW()'),
             ],

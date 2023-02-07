@@ -64,7 +64,7 @@ class Turn extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
+            'id' => Yii::t('turn', 'id'),
             'name_turn' => Yii::t('turn', 'name_turn'),
             'hour_begin' => Yii::t('turn', 'hour_begin'),
             'hour_end' => Yii::t('turn', 'hour_end'),

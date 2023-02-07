@@ -32,7 +32,7 @@ class Fua extends \yii\db\ActiveRecord
                 'class' => TimestampBehavior::className(),
                 'attributes' => [
                     ActiveRecord::EVENT_BEFORE_INSERT => ['created_date','modified_date'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_by',
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_date',
                 ],
                 'value' => new Expression('NOW()'),
             ],
