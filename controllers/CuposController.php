@@ -7,7 +7,6 @@ use app\models\CuposSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 use yii\filters\AccessControl;
 
 /**
@@ -33,7 +32,7 @@ class CuposController extends Controller
                             'roles' => ['?'],
                         ],
                         [
-                            'actions' => ['logout','index'],
+                            'actions' => ['logout','index','view','create','update','delete'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],

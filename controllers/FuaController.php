@@ -7,6 +7,7 @@ use app\models\FuaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * FuaController implements the CRUD actions for Fua model.
@@ -21,6 +22,22 @@ class FuaController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','login'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['login', 'signup'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'actions' => ['logout','index','view','create','update','delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

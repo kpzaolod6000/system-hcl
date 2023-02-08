@@ -7,6 +7,7 @@ use app\models\ProgramationSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ProgramationController implements the CRUD actions for Programation model.
@@ -21,6 +22,22 @@ class ProgramationController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','login'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['login', 'signup'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'actions' => ['logout','index','view','create','update','delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

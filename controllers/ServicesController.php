@@ -7,6 +7,7 @@ use app\models\ServicesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ServicesController implements the CRUD actions for Services model.
@@ -21,6 +22,22 @@ class ServicesController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','login'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['login', 'signup'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'actions' => ['logout','index','view','create','update','delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

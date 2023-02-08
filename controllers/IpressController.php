@@ -7,7 +7,7 @@ use app\models\IpressSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\filters\AccessControl;
 /**
  * IpressController implements the CRUD actions for Ipress model.
  */
@@ -21,6 +21,22 @@ class IpressController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'only' => ['logout','index','login'],
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['login', 'signup'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'actions' => ['logout','index','view','create','update','delete'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
