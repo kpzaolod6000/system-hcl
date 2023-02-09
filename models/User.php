@@ -59,6 +59,29 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Finds user by username
+     *
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username'=>$username]);
+    }
+
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return bool if password provided is valid for current user
+     */
+
+    public function validatePassword($password)
+    {
+        return (Yii::$app->getSecurity()->validatePassword($password, $this->password));
+    }
+
+    /**
      * Finds an identity by the given ID.
      *
      * @param string|int $id the ID to be looked for
@@ -109,6 +132,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         if (parent::beforeSave($insert)) {
             if ($this->isNewRecord) {
+                $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
                 $this->auth_key = \Yii::$app->security->generateRandomString();
             }
             return true;
