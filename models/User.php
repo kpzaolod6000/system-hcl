@@ -139,13 +139,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'name' => 'Name',
-            'last_name' => 'Last Name',
-            'last_name_m' => 'Last Name M',
-            'role' => 'Role',
-            'password' => 'Password',
+            'id' => Yii::t('user', 'id'),
+            'username' => Yii::t('user', 'username'),
+            'name' => Yii::t('user', 'name'),
+            'last_name' => Yii::t('user', 'last_name'),
+            'last_name_m' => Yii::t('user', 'last_name_m'),
+            'role' => Yii::t('user', 'role'),
+            'password' => Yii::t('user', 'password'),
             //'auth_key' => 'Auth Key',
             //'created_by' => 'Created By',
             //'created_date' => 'Created Date',
