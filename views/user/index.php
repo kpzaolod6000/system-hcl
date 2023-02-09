@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'last_name',
             'last_name_m',
             'role',
-            //'password',
+            'password',
             //'auth_key',
             //'created_by',
             //'created_date',

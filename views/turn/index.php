@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\TurnSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Turns';
+$this->title = 'Turno';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="turn-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Turn', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Turno', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-
+use yii;
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
@@ -22,22 +22,7 @@ class UserController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'only' => ['logout','index','login'],
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'actions' => ['login', 'signup'],
-                            'roles' => ['?'],
-                        ],
-                        [
-                            'actions' => ['logout','index','view','create','update','delete'],
-                            'allow' => true,
-                            'roles' => ['@'],
-                        ],
-                    ],
-                ],
+                
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [

@@ -6,7 +6,7 @@ return [
         'last_name' => 'Apellido P',
         'last_name_m' => 'Apellido M',
         'role' => 'Rol',
-        //'password' => 'Password',
+        'password' => 'Contraseña',
         //'auth_key' => 'Auth Key',
         //'created_by' => 'Created By',
         //'created_date' => 'Created Date',
