@@ -9,14 +9,17 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         
-        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
                 <img src="<?=$assetDir?>/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#"><i class="fa fa-circle text-success"></i> 
+                        <?= Yii::$app->user->identity->name.' '.Yii::$app->user->identity->last_name.' '.Yii::$app->user->identity->last_name_m;?>
+                </a>
             </div>
-        </div> -->
+
+        </div>
 
         <!-- SidebarSearch Form -->
         <!-- href be escaped -->
@@ -34,17 +37,22 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <?php
+            $roles=\Yii::$app->authManager->getRolesByUser(Yii::$app->user->identity->id);
+            // echo "<pre>";
+            var_dump(array_key_exists('user',$roles));
+            // var_dump(json_encode($roles));
+            // exit;
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
-                    [
-                        'label' => 'Starter Pages',
-                        'icon' => 'tachometer-alt',
-                        'badge' => '<span class="right badge badge-info">2</span>',
-                        'items' => [
-                            ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                            ['label' => 'Inactive Page', 'iconStyle' => 'far'],
-                        ]
-                    ],
+                    // [
+                    //     'label' => 'Starter Pages',
+                    //     'icon' => 'tachometer-alt',
+                    //     'badge' => '<span class="right badge badge-info">2</span>',
+                    //     'items' => [
+                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                    //     ]
+                    // ],
                     ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
                     ['label' => 'Yii2 PROVIDED', 'header' => true],
                     ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
