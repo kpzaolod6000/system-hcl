@@ -2,6 +2,9 @@
 <?php
 
 use yii\helpers\Html;
+use hail812\adminlte3\assets\AdminLteAsset;
+AdminLteAsset::register($this);
+
 
 /* @var $this \yii\web\View */
 /* @var $content string */
