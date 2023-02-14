@@ -10,15 +10,14 @@ use yii\grid\GridView;
 /** @var app\models\ServicesPersonalSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Services Personals';
+$this->title = 'Servicio Personal';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="services-personal-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
     <p>
-        <?= Html::a('Create Services Personal', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Servicio Personal', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

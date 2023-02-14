@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
 /** @var yii\web\View $this */
 /** @var app\models\Programation $model */
@@ -12,22 +15,23 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date_attention')->textInput() ?>
 
-    <?= $form->field($model, 'id_services_personal')->textInput() ?>
 
-    <?= $form->field($model, 'id_turn')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'date_attention'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la fecha de la atencion']],
+            'id_services_personal'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo del turno']],
+            'id_turn'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo de servicio personal']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

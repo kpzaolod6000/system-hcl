@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\IpressSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Ipresses';
+$this->title = 'IPRESS';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="ipress-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Ipress', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear IPRESS', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

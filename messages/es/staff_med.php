@@ -11,5 +11,6 @@ return [
         'created_date' => 'Created Date',
         'modified_by' => 'Modified By',
         'modified_date' => 'Modified Date',
+        'staff_med' => 'Personal Médico',
         ];
 ?>

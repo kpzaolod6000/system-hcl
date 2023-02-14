@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\HistoryClinic $model */
 
-$this->title = 'Create History Clinic';
+$this->title = 'Crear historia clinica';
 $this->params['breadcrumbs'][] = ['label' => 'History Clinics', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

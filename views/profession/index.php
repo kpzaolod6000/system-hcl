@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\ProfessionSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Professions';
+$this->title = 'Profesión';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="profession-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Profession', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Profesión', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

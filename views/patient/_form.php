@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
 /** @var yii\web\View $this */
 /** @var app\models\Patient $model */
@@ -12,32 +15,27 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'type_doc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'nro_doc')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'last_name_m')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'gender')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'birth_date')->textInput() ?>
-
-    <?= $form->field($model, 'clinic_history')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'type_doc'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el tipo de documento del paciente']],
+            'nro_doc'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de documento del paciente']],
+            'name'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre del paciente']],
+            'last_name'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el apellido paterno del paciente']],
+            'last_name_m'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el apellido materno del paciente']],
+            'gender'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el género del paciente']],
+            'birth_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la fecha de nacimiento del paciente']],
+            'clinic_history'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de historia clínica del paciente']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

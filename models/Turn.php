@@ -53,7 +53,7 @@ class Turn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['hour_begin', 'hour_end' ], 'safe'],
+            [['hour_begin', 'hour_end', 'name_turn' ], 'required'],
             [['name_turn'], 'string', 'max' => 50],
         ];
     }

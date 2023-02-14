@@ -65,7 +65,10 @@ class Ipress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            [['establishment', 'department', 'province','district', 'disa', 'full_name', 
+            'cod_ipress', 'ubigeo', 'diresa', 'name_red', 'cod_microred', 'diresa', 'name_red', 
+            'cod_microred', 'cod_ue', 'red', 'microred', 'name_ue', 'created_by', 'created_date', 
+            'modified_by', 'modified_date'], 'required'],
             [['created_by', 'modified_by'], 'integer'],
             [['created_date', 'modified_date'], 'safe'],
             [['cod_ipress', 'ubigeo'], 'string', 'max' => 12],

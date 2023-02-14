@@ -7,6 +7,7 @@ return [
         'last_name_m' => 'Apellido M',
         'role' => 'Rol',
         'password' => 'Contraseña',
+        'Users' => 'Usuarios',
         //'auth_key' => 'Auth Key',
         //'created_by' => 'Created By',
         //'created_date' => 'Created Date',

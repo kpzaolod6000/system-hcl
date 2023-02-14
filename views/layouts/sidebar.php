@@ -58,7 +58,7 @@
                         'badge' => '<span class="right badge badge-info">2</span>',
                         'items' => [
                             ['label' => 'Registrar Cupo', 'url' => ['cupos/create'], 'iconStyle' => 'far'],
-                            ['label' => 'Listar Cupos','url' => ['cupos/index'], 'iconStyle' => 'far'],
+                            ['label' => 'Cupos','url' => ['cupos/index'], 'iconStyle' => 'far'],
                         ]
                     ],
                     

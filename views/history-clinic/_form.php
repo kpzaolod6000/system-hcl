@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
 /** @var yii\web\View $this */
 /** @var app\models\HistoryClinic $model */
@@ -11,40 +14,29 @@ use yii\widgets\ActiveForm;
 <div class="history-clinic-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'nro_history_clinic')->textInput() ?>
-
-    <?= $form->field($model, 'date_entry')->textInput() ?>
-
-    <?= $form->field($model, 'addres')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'nro_phone')->textInput() ?>
-
-    <?= $form->field($model, 'profession')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ocupation')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'religion')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'procedence')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'id_type_sure')->textInput() ?>
-
-    <?= $form->field($model, 'id_marital_status')->textInput() ?>
-
-    <?= $form->field($model, 'id_instruction_grade')->textInput() ?>
-
-    <?= $form->field($model, 'id_patient')->textInput() ?>
-
-    <?= $form->field($model, 'id_patient_comp')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+</div>
+     <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'nro_history_clinic'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de la historia clínica']],
+            'date_entry'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la fecha de ingreso']],
+            'addres'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la dirección']],
+            'nro_phone'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el numero de celular']],
+            'profession'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la profesion']],
+            'ocupation'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la ocupacion']],
+            'religion'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la religion']],
+            'procedence'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la procedencia']],
+            'id_type_sure'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el tipo de seguro']],
+            'id_marital_status'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el estado civil']],
+            'id_instruction_grade'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el grado de instrucción']],
+            'id_patient'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de documento del paciente']],
+            'id_patient_comp'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de documento del acompañante']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
@@ -52,4 +44,4 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
-</div>
+

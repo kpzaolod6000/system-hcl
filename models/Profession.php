@@ -52,7 +52,7 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            [['name_prof', 'cod_col', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
             [['created_by', 'modified_by'], 'integer'],
             [['created_date', 'modified_date'], 'safe'],
             [['name_prof'], 'string', 'max' => 50],

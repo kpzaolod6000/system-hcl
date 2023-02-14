@@ -7,7 +7,6 @@ use yii\widgets\ActiveForm;
 /** @var app\models\ProgramationSearch $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
-
 <div class="programation-search">
 
     <?php $form = ActiveForm::begin([
@@ -32,10 +31,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'modified_date') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('Buscar', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reiniciar', ['class' => 'btn btn-outline-secondary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>

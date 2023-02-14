@@ -56,8 +56,8 @@ class StaffMed extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['max_q', 'q_issued', 'q_slope', 'id_prof', 'created_by', 'modified_by'], 'integer'],
-            [['id_prof', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            //[['max_q', 'q_issued', 'q_slope', 'id_prof', 'created_by', 'modified_by'], 'integer'],
+            [['cod_staff_med', 'name_staff_med', 'max_q', 'q_issued', 'q_slope', 'id_prof', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
             [['created_date', 'modified_date'], 'safe'],
             [['cod_staff_med'], 'string', 'max' => 11],
             [['name_staff_med'], 'string', 'max' => 50],
@@ -77,10 +77,10 @@ class StaffMed extends \yii\db\ActiveRecord
             'q_issued' => Yii::t('staff_med', 'q_issued'),
             'q_slope' => Yii::t('staff_med', 'q_slope'),
             'id_prof' => Yii::t('staff_med', 'id_prof'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

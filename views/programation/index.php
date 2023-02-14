@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\ProgramationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Programations';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('programation', 'programation');
+$this->params['breadcrumbs'][] = $this-> title;
 ?>
 <div class="programation-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Programation', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Programacion', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

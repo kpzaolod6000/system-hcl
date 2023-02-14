@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Ipress $model */
 
-$this->title = 'Update Ipress: ' . $model->id;
+$this->title = 'Actualizar IPRESS: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Ipresses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

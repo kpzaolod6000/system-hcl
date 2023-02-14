@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
 /** @var yii\web\View $this */
 /** @var app\models\Profession $model */
@@ -12,20 +15,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name_prof')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cod_col')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'name_prof'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de la profesión']],
+            'cod_col'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo el codigo de colegiatura del médico']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

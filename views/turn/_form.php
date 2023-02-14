@@ -1,35 +1,44 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
-/** @var yii\web\View $this */
-/** @var app\models\Turn $model */
-/** @var yii\widgets\ActiveForm $form */
+/* @var yii\web\View $this */
+/* @var app\models\Turn $model */
+/* @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="turn-form">
 
     <?php $form = ActiveForm::begin(); ?>
+</div>
+    
 
-    <?= $form->field($model, 'name_turn')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'hour_begin')->textInput() ?>
-
-    <?= $form->field($model, 'hour_end')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <div id='turn'></div>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'name_turn'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de turno']],
+            'hour_begin'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la hora de inicio']],     
+            'hour_end'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la hora de termino']],
+            //'created_by'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'created_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'modified_by'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'modified_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+        ]
+    ]);
+    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
-</div>

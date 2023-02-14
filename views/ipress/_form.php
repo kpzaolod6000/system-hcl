@@ -1,7 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
 /** @var yii\web\View $this */
 /** @var app\models\Ipress $model */
@@ -12,46 +15,33 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'cod_ipress')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'full_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'establishment')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'province')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'district')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'ubigeo')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'diresa')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name_red')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cod_microred')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'disa')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'red')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'microred')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'cod_ue')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name_ue')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'cod_ipress'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el código IPRESS']],
+            'full_name'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de IPRESS']],
+            'establishment'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el establecimiento']],
+            'department'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el departamento']],
+            'province'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la provincia']],
+            'district'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el distrito']],
+            'ubigeo'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el ubigeo']],
+            'diresa'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la diresa']],
+            'name_red'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo de la red']],
+            'cod_microred'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo de microred']],
+            'disa'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el disa']],
+            'red'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de la red']],
+            'microred'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de la microred']],
+            'cod_ue'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de unidad ejecutora']],
+            'name_ue'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de unidad ejecutora']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

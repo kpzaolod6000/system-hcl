@@ -1,41 +1,46 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+//use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use kartik\form\ActiveForm;
+use kartik\builder\Form;
 
-/** @var yii\web\View $this */
-/** @var app\models\StaffMed $model */
-/** @var yii\widgets\ActiveForm $form */
+/* @var yii\web\View $this */
+/* @var app\models\StaffMed $model */
+/* @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="staff-med-form">
 
     <?php $form = ActiveForm::begin(); ?>
+</div>
 
-    <?= $form->field($model, 'cod_staff_med')->textInput(['maxlength' => true]) ?>
+    
 
-    <?= $form->field($model, 'name_staff_med')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'max_q')->textInput() ?>
-
-    <?= $form->field($model, 'q_issued')->textInput() ?>
-
-    <?= $form->field($model, 'q_slope')->textInput() ?>
-
-    <?= $form->field($model, 'id_prof')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'created_date')->textInput() ?>
-
-    <?= $form->field($model, 'modified_by')->textInput() ?>
-
-    <?= $form->field($model, 'modified_date')->textInput() ?>
+    <div id='staff-med'></div>
+    <?php 
+    echo Form::widget([
+        'model'=>$model,
+        'form'=>$form,
+        'columns'=>2,
+        'attributes'=>[
+            'cod_staff_med'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el codigo del médico']],
+            'name_staff_med'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre del médico']],     
+            'max_q'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el numero maximo de cupos']],
+            'q_issued'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la cantidad de cupos a emitir']],
+            'q_slope'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            'id_prof'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'created_by'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'created_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'modified_by'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+            //'modified_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
+        ]
+    ]);    
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-</div>

@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\StaffMedSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Staff Meds';
+$this->title = 'Personal Médico';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="staff-med-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Staff Med', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Personal Médico', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

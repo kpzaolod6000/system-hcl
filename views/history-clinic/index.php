@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\HistoryClinicSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'History Clinics';
+$this->title = 'Historia Clínica';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="history-clinic-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create History Clinic', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear historia clínica', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

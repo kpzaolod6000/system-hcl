@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Turn $model */
 
-$this->title = 'Update Turn: ' . $model->id;
+$this->title = 'Actualizar Turno: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Turns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

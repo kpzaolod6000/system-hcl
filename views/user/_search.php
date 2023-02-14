@@ -40,8 +40,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'modified_date') ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('message/es', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('message/es', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton(Yii::t('message/es', 'Buscar'), ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton(Yii::t('message/es', 'Reiniciar'), ['class' => 'btn btn-outline-secondary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

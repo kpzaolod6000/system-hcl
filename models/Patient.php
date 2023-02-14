@@ -58,7 +58,8 @@ class Patient extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_doc', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            [['last_name', 'last_name_m', 'gender', 'birth_date', 'clinic_history', 'name', 'nro_doc', 
+            'type_doc', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
             [['birth_date', 'created_date', 'modified_date'], 'safe'],
             [['created_by', 'modified_by'], 'integer'],
             [['type_doc'], 'string', 'max' => 50],
