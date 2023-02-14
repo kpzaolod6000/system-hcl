@@ -18,7 +18,6 @@
                         <?= Yii::$app->user->identity->name.' '.Yii::$app->user->identity->last_name.' '.Yii::$app->user->identity->last_name_m;?>
                 </a>
             </div>
-
         </div>
 
         <!-- SidebarSearch Form -->
@@ -45,42 +44,67 @@
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
                     // [
-                    //     'label' => 'Starter Pages',
+                    //     'label' => 'CONSULTA EXTERNA',
                     //     'icon' => 'tachometer-alt',
                     //     'badge' => '<span class="right badge badge-info">2</span>',
                     //     'items' => [
-                    //         ['label' => 'Active Page', 'url' => ['site/index'], 'iconStyle' => 'far'],
-                    //         ['label' => 'Inactive Page', 'iconStyle' => 'far'],
+                    //         ['label' => 'Nuevo Cupo', 'url' => ['site/index'], 'iconStyle' => 'far'],
+                    //         ['label' => 'Listar Cupos', 'iconStyle' => 'far'],
                     //     ]
                     // ],
-                    ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
-                    ['label' => 'Yii2 PROVIDED', 'header' => true],
-                    ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
-                    ['label' => 'Gii',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
-                    ['label' => 'Debug', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
-                    ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
-                    ['label' => 'Level1'],
                     [
-                        'label' => 'Level1',
+                        'label' => 'CONSULTA EXTERNA',
+                        'icon' => 'ticket-alt',
+                        'badge' => '<span class="right badge badge-info">2</span>',
                         'items' => [
-                            ['label' => 'Level2', 'iconStyle' => 'far'],
-                            [
-                                'label' => 'Level2',
-                                'iconStyle' => 'far',
-                                'items' => [
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
-                                    ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
-                                ]
-                            ],
-                            ['label' => 'Level2', 'iconStyle' => 'far']
+                            ['label' => 'Registrar Cupo', 'url' => ['cupos/create'], 'iconStyle' => 'far'],
+                            ['label' => 'Listar Cupos','url' => ['cupos/index'], 'iconStyle' => 'far'],
                         ]
                     ],
-                    ['label' => 'Level1'],
-                    ['label' => 'LABELS', 'header' => true],
-                    ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
-                    ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
-                    ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
+                    
+                    [
+                        'label' => 'PROGRAMACION',
+                        'icon' => 'calendar-alt',
+                        'badge' => '<span class="right badge badge-info">2</span>',
+                        'items' => [
+                            ['label' => 'Registrar Programacion', 'url' => ['programation/create'], 'iconStyle' => 'far'],
+                            ['label' => 'Programaciones','url' => ['programation/index'], 'iconStyle' => 'far'],
+                        ]
+                    ],
+
+                    // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
+                    // ['label' => 'CONSULTA EXTERNA', 'header' => true],
+                    // ['label' => 'Login', 'url' => ['site/login'], 'icon' => 'sign-in-alt', 'visible' => Yii::$app->user->isGuest],
+                    // ['label' => 'Nuevo Cupo',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                    // ['label' => 'Listar Cupos', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+
+                    // ['label' => 'PROGRAMACION', 'header' => true],
+                    // ['label' => 'Nueva Programacion',  'icon' => 'file-code', 'url' => ['/gii'], 'target' => '_blank'],
+                    // ['label' => 'Listar Programacion', 'icon' => 'bug', 'url' => ['/debug'], 'target' => '_blank'],
+
+                    // ['label' => 'MULTI LEVEL EXAMPLE', 'header' => true],
+                    // ['label' => 'Level1'],
+                    // [
+                    //     'label' => 'Level1',
+                    //     'items' => [
+                    //         ['label' => 'Level2', 'iconStyle' => 'far'],
+                    //         [
+                    //             'label' => 'Level2',
+                    //             'iconStyle' => 'far',
+                    //             'items' => [
+                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle'],
+                    //                 ['label' => 'Level3', 'iconStyle' => 'far', 'icon' => 'dot-circle']
+                    //             ]
+                    //         ],
+                    //         ['label' => 'Level2', 'iconStyle' => 'far']
+                    //     ]
+                    // ],
+                    // ['label' => 'Level1'],
+                    // ['label' => 'LABELS', 'header' => true],
+                    // ['label' => 'Important', 'iconStyle' => 'far', 'iconClassAdded' => 'text-danger'],
+                    // ['label' => 'Warning', 'iconClass' => 'nav-icon far fa-circle text-warning'],
+                    // ['label' => 'Informational', 'iconStyle' => 'far', 'iconClassAdded' => 'text-info'],
                 ],
             ]);
             ?>
