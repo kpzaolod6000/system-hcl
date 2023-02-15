@@ -16,8 +16,6 @@ use kartik\builder\Form;
     <?php $form = ActiveForm::begin(); ?>
 </div>
 
-    
-
     <div id='staff-med'></div>
     <?php 
     echo Form::widget([

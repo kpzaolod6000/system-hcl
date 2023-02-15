@@ -6,15 +6,15 @@ use yii\helpers\ArrayHelper;
 use kartik\form\ActiveForm;
 use kartik\builder\Form;
 
-/** @var yii\web\View $this */
-/** @var app\models\HistoryClinic $model */
-/** @var yii\widgets\ActiveForm $form */
+/* @var yii\web\View $this */
+/* @var app\models\HistoryClinic $model */
+/* @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="history-clinic-form">
-
     <?php $form = ActiveForm::begin(); ?>
 </div>
+    <div id='history-clinic'></div>
      <?php 
     echo Form::widget([
         'model'=>$model,
@@ -39,9 +39,7 @@ use kartik\builder\Form;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
-
-

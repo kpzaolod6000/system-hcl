@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\ProgramationSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = Yii::t('programation', 'programation');
+$this->title = Yii::t('programation', 'Programation');
 $this->params['breadcrumbs'][] = $this-> title;
 ?>
 <div class="programation-index">

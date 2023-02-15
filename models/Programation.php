@@ -53,8 +53,8 @@ class Programation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date_attention', 'created_date', 'modified_date'], 'safe'],
-            [['id_services_personal', 'date_attention', 'id_turn', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            //[['date_attention', 'created_date', 'modified_date'], 'safe'],
+            [['id_services_personal', 'date_attention', 'id_turn'], 'required'],
             [['id_services_personal', 'id_turn', 'created_by', 'modified_by'], 'integer'],
         ];
     }

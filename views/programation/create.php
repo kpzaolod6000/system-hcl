@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /** @var app\models\Programation $model */
 
 $this->title = 'Crear Programación';
-$this->params['breadcrumbs'][] = ['label' => Yii::t('programation', 'programation'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('programation', 'Programation'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="programation-create">

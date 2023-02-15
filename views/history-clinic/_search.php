@@ -25,23 +25,23 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'nro_phone') ?>
 
-    <?php // echo $form->field($model, 'profession') ?>
+    <?= $form->field($model, 'profession') ?>
 
-    <?php // echo $form->field($model, 'ocupation') ?>
+    <?= $form->field($model, 'ocupation') ?>
 
-    <?php // echo $form->field($model, 'religion') ?>
+    <?= $form->field($model, 'religion') ?>
 
-    <?php // echo $form->field($model, 'procedence') ?>
+    <?= $form->field($model, 'procedence') ?>
 
-    <?php // echo $form->field($model, 'id_type_sure') ?>
+    <?= $form->field($model, 'id_type_sure') ?>
 
-    <?php // echo $form->field($model, 'id_marital_status') ?>
+    <?= $form->field($model, 'id_marital_status') ?>
 
-    <?php // echo $form->field($model, 'id_instruction_grade') ?>
+    <?= $form->field($model, 'id_instruction_grade') ?>
 
-    <?php // echo $form->field($model, 'id_patient') ?>
+    <?= $form->field($model, 'id_patient') ?>
 
-    <?php // echo $form->field($model, 'id_patient_comp') ?>
+    <?= $form->field($model, 'id_patient_comp') ?>
 
     <?php // echo $form->field($model, 'created_by') ?>
 

@@ -10,8 +10,8 @@ use yii\grid\GridView;
 /** @var app\models\TurnSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-// $this->title = 'Turno'; 
-$this->params['breadcrumbs'][] = $this->title = 'Turno';
+$this->title = Yii::t('turn', 'turn');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="turn-index">
 

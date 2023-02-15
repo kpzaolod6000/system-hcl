@@ -16,7 +16,6 @@ use kartik\builder\Form;
     <?php $form = ActiveForm::begin(); ?>
 </div>
     
-
     <div id='turn'></div>
     <?php 
     echo Form::widget([

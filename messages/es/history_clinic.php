@@ -14,6 +14,7 @@ return [
         'id_instruction_grade' => 'Grado de Intruccion',
         'id_patient' => 'Documento Paciente',
         'id_patient_comp' => 'Documento Acompañante',
+        'history_clinic' => 'Historia clínica',
         //'created_by',
         //'created_date',
         //'modified_by',
