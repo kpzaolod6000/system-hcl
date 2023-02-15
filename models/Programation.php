@@ -55,7 +55,7 @@ class Programation extends \yii\db\ActiveRecord
         return [
             //[['date_attention', 'created_date', 'modified_date'], 'safe'],
             [['id_services_personal', 'date_attention', 'id_turn'], 'required'],
-            [['id_services_personal', 'id_turn', 'created_by', 'modified_by'], 'integer'],
+            [['id_services_personal', 'id_turn'], 'integer'],
         ];
     }
 
@@ -69,10 +69,10 @@ class Programation extends \yii\db\ActiveRecord
             'date_attention' => Yii::t('programation', 'date_attention'),
             'id_services_personal' => Yii::t('programation', 'id_services_personal'),
             'id_turn' => Yii::t('programation', 'id_turn'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }
