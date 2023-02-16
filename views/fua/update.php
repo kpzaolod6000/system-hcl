@@ -5,14 +5,14 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Fua $model */
 
-$this->title = 'Update Fua: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Fuas', 'url' => ['index']];
+$this->title = 'Actualizar FUA: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'FUA', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="fua-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -67,18 +67,17 @@ class Ipress extends \yii\db\ActiveRecord
         return [
             [['establishment', 'department', 'province','district', 'disa', 'full_name', 
             'cod_ipress', 'ubigeo', 'diresa', 'name_red', 'cod_microred', 'diresa', 'name_red', 
-            'cod_microred', 'cod_ue', 'red', 'microred', 'name_ue', 'created_by', 'created_date', 
-            'modified_by', 'modified_date'], 'required'],
-            [['created_by', 'modified_by'], 'integer'],
+            'cod_microred', 'cod_ue', 'red', 'microred', 'name_ue'], 'required'],
+            //[['created_by', 'modified_by'], 'integer'],
             [['created_date', 'modified_date'], 'safe'],
-            [['cod_ipress', 'ubigeo'], 'string', 'max' => 12],
-            [['full_name'], 'string', 'max' => 300],
-            [['establishment'], 'string', 'max' => 200],
-            [['department', 'province', 'disa'], 'string', 'max' => 30],
-            [['district'], 'string', 'max' => 40],
-            [['diresa', 'name_red', 'cod_microred', 'cod_ue'], 'string', 'max' => 5],
-            [['red', 'microred'], 'string', 'max' => 60],
-            [['name_ue'], 'string', 'max' => 100],
+            //[['cod_ipress', 'ubigeo'], 'string', 'max' => 12],
+            //[['full_name'], 'string', 'max' => 300],
+            //[['establishment'], 'string', 'max' => 200],
+            //[['department', 'province', 'disa'], 'string', 'max' => 30],
+            //[['district'], 'string', 'max' => 40],
+            //[['diresa', 'name_red', 'cod_microred', 'cod_ue'], 'string', 'max' => 5],
+            //[['red', 'microred'], 'string', 'max' => 60],
+            //[['name_ue'], 'string', 'max' => 100],
         ];
     }
 
@@ -104,10 +103,10 @@ class Ipress extends \yii\db\ActiveRecord
             'microred' => Yii::t('ipress', 'microred'),
             'cod_ue' => Yii::t('ipress', 'cod_ue'),
             'name_ue' => Yii::t('ipress', 'name_ue'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

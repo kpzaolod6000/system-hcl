@@ -59,8 +59,8 @@ class StaffMed extends \yii\db\ActiveRecord
             //[['max_q', 'q_issued', 'q_slope', 'id_prof', 'created_by', 'modified_by'], 'integer'],
             [['cod_staff_med', 'name_staff_med', 'max_q', 'q_issued', 'q_slope', 'id_prof'], 'required'],
             [['created_date', 'modified_date'], 'safe'],
-            [['cod_staff_med'], 'string', 'max' => 11],
-            [['name_staff_med'], 'string', 'max' => 50],
+            //[['cod_staff_med'], 'string', 'max' => 11],
+            //[['name_staff_med'], 'string', 'max' => 50],
         ];
     }
 

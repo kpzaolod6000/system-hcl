@@ -55,7 +55,7 @@ class Programation extends \yii\db\ActiveRecord
         return [
             //[['date_attention', 'created_date', 'modified_date'], 'safe'],
             [['id_services_personal', 'date_attention', 'id_turn'], 'required'],
-            [['id_services_personal', 'id_turn'], 'integer'],
+            //[['id_services_personal', 'id_turn'], 'integer'],
         ];
     }
 

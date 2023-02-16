@@ -57,10 +57,10 @@ class Services extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type', 'ups', 'ups_s', 'max_cp', 'max_am', 'max_pm', 'created_by', 'modified_by'], 'integer'],
-            [['created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            //[['type', 'ups', 'ups_s', 'max_cp', 'max_am', 'max_pm', 'created_by', 'modified_by'], 'integer'],
+            [['name', 'type', 'ups', 'ups_s', 'max_cp', 'max_am', 'max_pm'], 'required'],
             [['created_date', 'modified_date'], 'safe'],
-            [['name'], 'string', 'max' => 200],
+            //[['name'], 'string', 'max' => 200],
         ];
     }
 
@@ -78,10 +78,10 @@ class Services extends \yii\db\ActiveRecord
             'max_cp' => Yii::t('services', 'max_cp'),
             'max_am' => Yii::t('services', 'max_am'),
             'max_pm' => Yii::t('services', 'max_pm'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

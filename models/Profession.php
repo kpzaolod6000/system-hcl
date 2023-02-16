@@ -52,11 +52,11 @@ class Profession extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_prof', 'cod_col', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
-            [['created_by', 'modified_by'], 'integer'],
+            [['name_prof', 'cod_col'], 'required'],
+            //[['created_by', 'modified_by'], 'integer'],
             [['created_date', 'modified_date'], 'safe'],
-            [['name_prof'], 'string', 'max' => 50],
-            [['cod_col'], 'string', 'max' => 2],
+            //[['name_prof'], 'string', 'max' => 50],
+            //[['cod_col'], 'string', 'max' => 2],
         ];
     }
 
@@ -69,10 +69,10 @@ class Profession extends \yii\db\ActiveRecord
             'id' => Yii::t('profession', 'id'),
             'name_prof' => Yii::t('profession', 'name_prof'),
             'cod_col' => Yii::t('profession', 'cod_col'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

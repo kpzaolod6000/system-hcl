@@ -1,7 +1,7 @@
 <?php 
 return [
-        'id' => 'Codigo de turno',
-        'cod_ipress' => 'Codigo IPRESS',
+        'id' => 'Código de turno',
+        'cod_ipress' => 'Código IPRESS',
         'full_name' => 'Nombre',
         'establishment' => 'Establecimiento',
         'department' => 'Departamento',
@@ -9,8 +9,8 @@ return [
         'district' => 'Distrito',
         'ubigeo' => 'Ubigeo',
         'diresa' => 'Diresa',
-        'name_red' => 'Nombre Red',
-        'cod_microred' => 'Codigo Microred',
+        'name_red' => 'Nombre de red',
+        'cod_microred' => 'Codigo de microred',
         'disa' => 'Disa',
         'red' => 'Red',
         'microred' => 'Microred',

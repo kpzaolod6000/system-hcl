@@ -57,12 +57,12 @@ class Fua extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['type_doc', 'nro_doc', 'nro_hcl', 'cod_sure', 'date_attention', 'nro_ref', 'id_ipress', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
-            [['nro_hcl', 'id_ipress', 'created_by', 'modified_by'], 'integer'],
+            [['type_doc', 'nro_doc', 'nro_hcl', 'cod_sure', 'date_attention', 'nro_ref', 'id_ipress'], 'required'],
+            //[['nro_hcl', 'id_ipress', 'created_by', 'modified_by'], 'integer'],
             [['date_attention', 'created_date', 'modified_date'], 'safe'],
-            [['type_doc', 'cod_sure'], 'string', 'max' => 50],
-            [['nro_doc'], 'string', 'max' => 100],
-            [['nro_ref'], 'string', 'max' => 10],
+            //[['type_doc', 'cod_sure'], 'string', 'max' => 50],
+            //[['nro_doc'], 'string', 'max' => 100],
+            //[['nro_ref'], 'string', 'max' => 10],
         ];
     }
 
@@ -77,13 +77,13 @@ class Fua extends \yii\db\ActiveRecord
             'nro_doc' => Yii::t('fua', 'nro_doc'),
             'nro_hcl' => Yii::t('fua', 'nro_hcl'),
             'cod_sure' => Yii::t('fua', 'cod_sure'),
-            'date_attention' => Yii::t('fua', 'datte_attention'),
+            'date_attention' => Yii::t('fua', 'date_attention'),
             'nro_ref' => Yii::t('fua', 'nro_ref'),
             'id_ipress' => Yii::t('fua', 'id_ipress'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

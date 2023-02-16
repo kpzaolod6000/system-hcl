@@ -1,6 +1,6 @@
 <?php 
 return [
-        'id' => 'Codigo Profesión',
+        'id' => 'Codigo de profesión',
         'name_prof' => 'Nombre de profesión',
         'cod_col' => 'Codigo de colegiatura',
         'profession' => 'Profesión'

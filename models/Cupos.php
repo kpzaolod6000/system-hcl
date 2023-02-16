@@ -66,11 +66,13 @@ class Cupos extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order', 'nro_receipt', 'receipt', 'status', 'id_history_clinic', 'id_patient', 'id_programation', 'id_services', 'id_staff_med', 'id_fua', 'type_sure', 'created_by', 'modified_by'], 'integer'],
-            [['datte_attention', 'last_attention', 'created_date', 'modified_date'], 'safe'],
-            [['id_patient', 'id_programation', 'id_services', 'id_staff_med', 'id_fua', 'type_sure', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
-            [['phone', 'ip'], 'string', 'max' => 50],
-            [['reference'], 'string', 'max' => 20],
+            //[['order', 'nro_receipt', 'receipt', 'status', 'id_history_clinic', 'id_patient', 'id_programation', 'id_services', 'id_staff_med', 'id_fua', 'type_sure', 'created_by', 'modified_by'], 'integer'],
+            [['order','phone','datte_attention', 'last_attention', 'reference', 'created_date', 'modified_date'], 'safe'],
+            [['order','phone','datte_attention', 'last_attention', 'reference','nro_receipt','receipt', 'ip', 
+            'status', 'id_history_clinic', 'id_patient', 'id_programation', 'id_services', 'id_staff_med', 
+            'id_fua', 'type_sure'], 'required'],
+            //[['phone', 'ip'], 'string', 'max' => 50],
+            //[['reference'], 'string', 'max' => 20],
         ];
     }
 
@@ -97,10 +99,10 @@ class Cupos extends \yii\db\ActiveRecord
             'id_staff_med' => Yii::t('cupos', 'id_staff_med'),
             'id_fua' => Yii::t('cupos', 'id_fua'),
             'type_sure' => Yii::t('cupos', 'type_sure'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

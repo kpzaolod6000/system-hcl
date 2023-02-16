@@ -59,13 +59,13 @@ class Patient extends \yii\db\ActiveRecord
     {
         return [
             [['last_name', 'last_name_m', 'gender', 'birth_date', 'clinic_history', 'name', 'nro_doc', 
-            'type_doc', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
+            'type_doc'], 'required'],
             [['birth_date', 'created_date', 'modified_date'], 'safe'],
-            [['created_by', 'modified_by'], 'integer'],
-            [['type_doc'], 'string', 'max' => 50],
-            [['nro_doc', 'clinic_history'], 'string', 'max' => 12],
-            [['name', 'last_name', 'last_name_m'], 'string', 'max' => 20],
-            [['gender'], 'string', 'max' => 2],
+            //[['created_by', 'modified_by'], 'integer'],
+            //[['type_doc'], 'string', 'max' => 50],
+            //[['nro_doc', 'clinic_history'], 'string', 'max' => 12],
+            //[['name', 'last_name', 'last_name_m'], 'string', 'max' => 20],
+            //[['gender'], 'string', 'max' => 2],
         ];
     }
 
@@ -84,10 +84,10 @@ class Patient extends \yii\db\ActiveRecord
             'gender' => Yii::t('patient', 'gender'),
             'birth_date' => Yii::t('patient', 'birth_date'),
             'clinic_history' => Yii::t('patient', 'clinic_history'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

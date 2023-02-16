@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\FuaSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Fuas';
+$this->title = Yii::t('fua','fua');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="fua-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Fua', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Fua', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

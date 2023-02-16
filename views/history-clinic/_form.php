@@ -5,10 +5,11 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use kartik\form\ActiveForm;
 use kartik\builder\Form;
+use kartik\date\DatePicker;
 
-/* @var yii\web\View $this */
-/* @var app\models\HistoryClinic $model */
-/* @var yii\widgets\ActiveForm $form */
+/** @var yii\web\View $this */
+/** @var app\models\HistoryClinic $model */
+/** @var yii\widgets\ActiveForm $form */
 ?>
 
 <div class="history-clinic-form">
@@ -22,7 +23,18 @@ use kartik\builder\Form;
         'columns'=>2,
         'attributes'=>[
             'nro_history_clinic'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el número de la historia clínica']],
-            'date_entry'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la fecha de ingreso']],
+             'date_entry'=>['type'=>Form::INPUT_WIDGET,
+                         'widgetClass' => DatePicker::class,
+                         'options' => [
+                         'options' => ['placeholder' => 'Selecciona una fecha'],
+                         'pluginOptions' => [
+                             'autoclose' => true,
+                             'format' => 'yyyy-mm-dd',
+                             'todayHighlight' => true,
+                         ]
+                     ]
+             ],
+            //'date_entry'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la dirección']],
             'addres'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la dirección']],
             'nro_phone'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el numero de celular']],
             'profession'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la profesion']],
@@ -39,7 +51,7 @@ use kartik\builder\Form;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton($model->isNewRecord ? Yii::t('history_clinic', 'Guardar') : Yii::t('history_clinic', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

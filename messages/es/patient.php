@@ -1,6 +1,6 @@
 <?php 
 return [
-        'id' => 'Codigo de paciente',
+        'id' => 'Código de paciente',
         'type_doc' => 'Tipo de documento',
         'nro_doc' => 'Número de documento',
         'name' => 'Nombre',
@@ -9,7 +9,7 @@ return [
         'gender' => 'Género',
         'birth_date' => 'Fecha de nacimiento',
         'clinic_history' => 'Historia clínica',
-        'patient' => 'Pacientes',
+        'patient' => 'Paciente',
         //'created_by' => 'Created By',
         //'created_date' => 'Created Date',
         //'modified_by' => 'Modified By',

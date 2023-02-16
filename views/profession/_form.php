@@ -28,7 +28,7 @@ use kartik\builder\Form;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton($model->isNewRecord ? Yii::t('profession', 'Guardar') : Yii::t('profession', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

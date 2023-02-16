@@ -63,11 +63,12 @@ class HistoryClinic extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nro_history_clinic', 'date_entry', 'id_type_sure', 'id_marital_status', 'id_instruction_grade', 'id_patient', 'created_by', 'created_date', 'modified_by', 'modified_date'], 'required'],
-            [['nro_history_clinic', 'nro_phone', 'id_type_sure', 'id_marital_status', 'id_instruction_grade', 'id_patient', 'id_patient_comp', 'created_by', 'modified_by'], 'integer'],
-            [['date_entry', 'created_date', 'modified_date'], 'safe'],
-            [['addres', 'profession', 'ocupation', 'procedence'], 'string', 'max' => 200],
-            [['religion'], 'string', 'max' => 10],
+            [['nro_history_clinic', 'date_entry', 'addres', 'nro_phone', 'profession', 'ocupation', 
+            'religion', 'procedence', 'id_type_sure', 'id_marital_status', 'id_instruction_grade', 
+            'id_patient'], 'required'],
+            [['date_entry'], 'safe'],
+            //[['addres', 'profession', 'ocupation', 'procedence'], 'string', 'max' => 200],
+            //[['religion'], 'string', 'max' => 10],
         ];
     }
 
@@ -91,10 +92,10 @@ class HistoryClinic extends \yii\db\ActiveRecord
             'id_instruction_grade' => Yii::t('history_clinic', 'id_instruction_grade'),
             'id_patient' => Yii::t('history_clinic', 'id_patient'),
             'id_patient_comp' => Yii::t('history_clinic', 'id_patient_comp'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

@@ -10,15 +10,15 @@ use yii\grid\GridView;
 /** @var app\models\CuposSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Cupos';
+$this->title = Yii::t('cupos','cupos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cupos-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
-        <?= Html::a('Create Cupos', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Crear Cupo', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

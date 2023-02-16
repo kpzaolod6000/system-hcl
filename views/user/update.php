@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = Yii::t('message/es', 'Actualizar');
 ?>
 <div class="user-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <?= $this->render('_form', [
         'model' => $model,

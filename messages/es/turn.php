@@ -1,9 +1,9 @@
 <?php 
 return [
-        'id' => 'Código de Turno',
-        'name_turn' => 'Nombre del Turno',
-        'hour_begin' => 'Hora de Inicio',
-        'hour_end' => 'Hora Final',
-        'Turns' => 'Turno',
+        'id' => 'Código de turno',
+        'name_turn' => 'Nombre del turno',
+        'hour_begin' => 'Hora de inicio',
+        'hour_end' => 'Hora final',
+        'turn' => 'Turno',
         ];
 ?>

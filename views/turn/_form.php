@@ -5,6 +5,7 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 use kartik\form\ActiveForm;
 use kartik\builder\Form;
+use kartik\widgets\DateTimePicker;
 
 /* @var yii\web\View $this */
 /* @var app\models\Turn $model */
@@ -23,8 +24,9 @@ use kartik\builder\Form;
         'form'=>$form,
         'columns'=>2,
         'attributes'=>[
+
             'name_turn'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el nombre de turno']],
-            'hour_begin'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la hora de inicio']],     
+            'hour_begin'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la hora de inicio']],
             'hour_end'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba la hora de termino']],
             //'created_by'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
             //'created_date'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'...']],
@@ -36,7 +38,7 @@ use kartik\builder\Form;
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Guardar', ['class' => 'btn btn-success']) ?>
+    <?= Html::submitButton($model->isNewRecord ? Yii::t('turn', 'Guardar') : Yii::t('turn', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

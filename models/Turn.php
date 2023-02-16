@@ -54,7 +54,7 @@ class Turn extends \yii\db\ActiveRecord
     {
         return [
             [['hour_begin', 'hour_end', 'name_turn' ], 'required'],
-            [['name_turn'], 'string', 'max' => 50],
+            //[['name_turn'], 'string', 'max' => 50],
         ];
     }
 
@@ -68,10 +68,10 @@ class Turn extends \yii\db\ActiveRecord
             'name_turn' => Yii::t('turn', 'name_turn'),
             'hour_begin' => Yii::t('turn', 'hour_begin'),
             'hour_end' => Yii::t('turn', 'hour_end'),
-            'created_by' => 'Created By',
-            'created_date' => 'Created Date',
-            'modified_by' => 'Modified By',
-            'modified_date' => 'Modified Date',
+            //'created_by' => 'Created By',
+            //'created_date' => 'Created Date',
+            //'modified_by' => 'Modified By',
+            //'modified_date' => 'Modified Date',
         ];
     }
 }

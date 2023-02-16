@@ -7,13 +7,13 @@ use yii\widgets\DetailView;
 /** @var app\models\HistoryClinic $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'History Clinics', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Historia Clinica', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="history-clinic-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>

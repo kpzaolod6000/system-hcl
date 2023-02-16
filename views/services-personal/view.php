@@ -7,13 +7,13 @@ use yii\widgets\DetailView;
 /** @var app\models\ServicesPersonal $model */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Services Personals', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Servicio Personal', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="services-personal-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <!-- <h1><?= Html::encode($this->title) ?></h1> -->
 
     <p>
         <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
