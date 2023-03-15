@@ -170,6 +170,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'last_name_m' => Yii::t('user', 'last_name_m'),
             'role' => Yii::t('user', 'role'),
             'password' => Yii::t('user', 'password'),
+            're_password' => Yii::t('user', 're_password'),
             //'auth_key' => 'Auth Key',
             //'created_by' => 'Created By',
             //'created_date' => 'Created Date',

@@ -24,7 +24,7 @@ use kartik\builder\Form;
     echo Form::widget([
         'model'=>$model,
         'form'=>$form,
-        'columns'=>2,
+        'columns'=>3,
         'attributes'=>[
             'username'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba el usuario']],
             'name'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba su nombre']],     

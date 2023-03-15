@@ -8,6 +8,7 @@ return [
         'role' => 'Rol',
         'password' => 'Contraseña',
         'Users' => 'Usuarios',
+        're_password' => 'Confirmar Contraseña'
         //'auth_key' => 'Auth Key',
         //'created_by' => 'Created By',
         //'created_date' => 'Created Date',
