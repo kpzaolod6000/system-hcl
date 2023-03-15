@@ -128,6 +128,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
+    /**
+     * @param number &insert
+     * @return bool| if insert has element
+     */
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -139,6 +143,30 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
         return false;
     }
+
+
+    /**
+     * @param number &insert, array $changedAttributes
+     */
+    public function afterSave($insert,$changedAttributes)
+    {
+        $tmp=\Yii::$app->authManager->getRolesByUser($this->id);
+        
+        if(empty($tmp))
+        {
+            $auth = Yii::$app->authManager;
+            $authorRole = $auth->getRole($this->role);
+            $auth->assign($authorRole, $this->id);
+        }
+        else
+        {
+            $tmp=\Yii::$app->authManager->revokeAll($this->id);
+            $auth = Yii::$app->authManager;
+            $authorRole = $auth->getRole($this->role);
+            $auth->assign($authorRole, $this->id);            
+        }
+    }
+
 
     /**
      * {@inheritdoc}

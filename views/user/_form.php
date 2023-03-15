@@ -32,7 +32,13 @@ use kartik\builder\Form;
             'last_name_m'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Escriba su apellido materno']],
             'password'=>['type'=>Form::INPUT_PASSWORD, 'options'=>['placeholder'=>'Escriba su contraseña']],
             're_password'=>['type'=>Form::INPUT_PASSWORD, 'options'=>['placeholder'=>'Confirmar contraseña']],
-            'role'=>['type'=>Form::INPUT_TEXT, 'options'=>['placeholder'=>'Debe ser un dropdown']],
+            
+            'role'=>[
+                'type'=>Form::INPUT_DROPDOWN_LIST, 
+                'items'=>ArrayHelper::map(\Yii::$app->authManager->getRoles(),'name','name'),
+                'options'=>['prompt'=>'-- Seleccione --']
+                
+            ]
         ]
     ]);
     
