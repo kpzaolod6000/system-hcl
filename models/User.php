@@ -135,8 +135,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
+            $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
             if ($this->isNewRecord) {
-                $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
                 $this->auth_key = \Yii::$app->security->generateRandomString();
             }
             return true;
@@ -165,6 +165,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $authorRole = $auth->getRole($this->role);
             $auth->assign($authorRole, $this->id);            
         }
+    }
+
+
+ 
+    /**
+     * @param number &insert, array $changedAttributes
+     */
+    public function afterDelete(){
+        Yii::$app->authManager->revokeAll($this->id);
     }
 
 
