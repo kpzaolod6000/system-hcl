@@ -18,6 +18,9 @@ Thumbs.db
 # composer itself is not needed
 composer.phar
 
+# composer lock
+composer.lock
+
 # Mac DS_Store Files
 .DS_Store
 
@@ -31,9 +34,6 @@ tests/_support/_generated
 
 #vagrant folder
 /.vagrant
-/runtime/*
-tests/_data
-tests/_support
-tests/*
-vagrant/*
-vendor/*
+/tests/*
+/vagrant/*
+codeception.yml
