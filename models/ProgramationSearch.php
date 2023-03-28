@@ -18,7 +18,7 @@ class ProgramationSearch extends Programation
     {
         return [
             [['id', 'id_services_personal', 'id_turn', 'created_by', 'modified_by'], 'integer'],
-            [['date_attention', 'created_date', 'modified_date'], 'safe'],
+            [['date_program', 'created_date', 'modified_date'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class ProgramationSearch extends Programation
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'date_attention' => $this->date_attention,
+            'date_program' => $this->date_program,
             'id_services_personal' => $this->id_services_personal,
             'id_turn' => $this->id_turn,
             'created_by' => $this->created_by,

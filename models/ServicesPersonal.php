@@ -19,19 +19,19 @@ class ServicesPersonal extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-            // [
-            //     'class' => TimestampBehavior::className(),
-            //     'attributes' => [
-            //         ActiveRecord::EVENT_BEFORE_INSERT => ['created_date','modified_date'],
-            //         ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_date',
-            //     ],
-            //     'value' => new Expression('NOW()'),
-            // ],
-            // [
-            //     'class' => BlameableBehavior::className(),
-            //     'createdByAttribute' => 'created_by',
-            //     'updatedByAttribute' => 'modified_by',
-            // ],
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_date','modified_date'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_date',
+                ],
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'modified_by',
+            ],
         ];
     }
     /**
@@ -64,4 +64,15 @@ class ServicesPersonal extends \yii\db\ActiveRecord
             'id_staff_med' => Yii::t('services_personal', 'id_staff_med'),
         ];
     }
+
+    /**
+     * Gets query for [[Programation]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProgramation()
+    {
+        return $this->hasMany(Programation::className(), ['id_services_personal' => 'id']);
+    }
+
 }
