@@ -25,7 +25,8 @@
     	"kartik-v/yii2-builder": "dev-master",
     	"kartik-v/yii2-grid": "dev-master",
     	"hail812/yii2-adminlte3": "~1.1",
-    	"kartik-v/yii2-detail-view": "dev-master"
+    	"kartik-v/yii2-detail-view": "dev-master",
+        "philippfrenzel/yii2fullcalendar":"3.9.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
