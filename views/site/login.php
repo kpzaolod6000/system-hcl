@@ -12,10 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Historia Clínica</b><br>ue410 <b>HQ</b></a>
+      <a href="#" class="h1"><b>Historia Clínica</b><br>ue410 <b>HQ</b></a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Incie sesión con sus credenciales</p>
+      <p class="login-box-msg">Inicie sesión con sus credenciales</p>
 
       <?php $form = \yii\bootstrap4\ActiveForm::begin(['id' => 'login-form']) ?>
       <?= $form->field($model,'username', [
