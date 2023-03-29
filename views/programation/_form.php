@@ -1,10 +1,7 @@
 <?php
 
-use yii\helpers\Html;
-use yii\helpers\ArrayHelper;
 use kartik\form\ActiveForm;
 use kartik\builder\Form;
-use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use kartik\depdrop\DepDrop;
 
@@ -43,7 +40,7 @@ use kartik\depdrop\DepDrop;
                 'widgetClass'=>Select2::className(),
                 'options'=>[
                     'options'=>['placeholder' => 'Seleccione el servicio'],
-                    'data'=>['Servicios'=> $model->services]
+                    'data'=>['Servicios'=> $model->allServices]
                 ], 
                 // 'hint'=>'Seleccione el servicio adecuado'
 
@@ -80,11 +77,6 @@ use kartik\depdrop\DepDrop;
 <div id="program-calendar" class="row"></div>
 
 <!-- /.card -->
-
-<div class="form-group">
-<?= Html::submitButton($model->isNewRecord ? Yii::t('programation', 'Guardar') : Yii::t('programation', 'Actualizar'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-</div>
-
 
 <?php
 $urlCalendarProgram = Yii::$app->urlManager->createUrl(['programation/show-calendar-programation']);

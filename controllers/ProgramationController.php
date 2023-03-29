@@ -35,7 +35,7 @@ class ProgramationController extends Controller
                             'roles' => ['?'],
                         ],
                         [
-                            'actions' => ['logout','index','view','create','update','delete'],
+                            'actions' => ['logout','index','view','create','update','delete','create-programation'],
                             'allow' => true,
                             'roles' => ['@'],
                         ],
@@ -190,13 +190,13 @@ class ProgramationController extends Controller
             $Event->id = $row->id;
             $Event->start = $row->date_program;
             if ($row->id_turn == 1) {
-                $Event->title = "Cupo Establecido Turno Mañana";
+                $Event->title = "Turno Mañana-\nNro Cupos: ". $row->cupo_limit;
                 $Event->color = '#581845';
             }else{
-                $Event->title = "Cupo Establecido Turno Tarde";
+                $Event->title = "Turno Tarde-\nNro Cupos: ". $row->cupo_limit;
                 $Event->color = '#900C3F';
             }
-            $Event->editable = true;
+            // $Event->editable = true;
             // $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($row->date_start.' '.$row->time_start));
             // $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($row->date_end.' '.$time->time_end));
             $programation[] = $Event;
@@ -221,4 +221,49 @@ class ProgramationController extends Controller
         ]);
     }
 
+    public function actionDataProgramation($id){
+        
+        $modelProg = $this->findModel($id);
+        $modelServicePersonal = ServicesPersonal::findOne($modelProg['id_services_personal']);
+        $modelProg->staff = $modelServicePersonal['id_staff_med'];
+        $modelProg->service = $modelServicePersonal['id_services'];
+
+        return json_encode([
+            'status'=>'ok',
+            'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
+                [
+                    'model' => $modelProg
+                ])
+        ]);
+    }
+
+    public function actionCreateProgramation($id=NULL,$idStaff=NULL,$idService=NULL){
+        
+        if(!is_null($id)){
+
+            $modelProg=$this->findModel($id);
+            
+            if($this->request->isPost){
+                
+                $data = Yii::$app->request->post();
+                $modelProg->setStatusUpdate();
+                $modelProg->cupo_limit = (int) $data['Programation']['cupo_limit'];
+                $modelProg->update(true,['cupo_limit']);
+            
+                return json_encode([
+                    'status'=>'ok',
+                    'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
+                        [
+                            'idService' => $idService,
+                            'idStaff' => $idStaff
+                        ])
+                ]);
+            }
+
+        }else{
+
+        }
+        
+        
+    }
 }

@@ -30,6 +30,27 @@ class Programation extends \yii\db\ActiveRecord
     static $status_up = "MODIFICADO";
     static $status_en = "FINALIZADO";
     static $status_de = "ELIMINADO";
+    
+    public function setStatusCreate(){
+        $this->status = Programation::$status_st;
+        $this->update(true,['status']);
+    }
+
+    public function setStatusUpdate(){
+        $this->status = Programation::$status_up;
+        $this->update(true,['status']);
+    }
+
+    public function setStatusEnd(){
+        $this->status = Programation::$status_en;
+        $this->update(true,['status']);
+    }
+    
+    public function setStatusDelete(){
+        $this->status = Programation::$status_de;
+        $this->update(true,['status']);
+    }
+
 
     public function behaviors()
     {
@@ -64,8 +85,9 @@ class Programation extends \yii\db\ActiveRecord
     {
         return [
             //[['date_program', 'created_date', 'modified_date'], 'safe'],
+            [['status','cupo_limit'], 'required','on'=>'update'],
             [['id_services_personal', 'date_program', 'id_turn', 'service', 'staff', 'status'], 'required'],
-            [['id_services_personal', 'id_turn', 'service', 'staff'], 'integer'],
+            [['id_services_personal', 'id_turn', 'service', 'staff', 'cupo_limit'], 'integer'],
         ];
     }
 
@@ -81,6 +103,7 @@ class Programation extends \yii\db\ActiveRecord
             'staff' => Yii::t('programation', 'staff'),
             'id_services_personal' => Yii::t('programation', 'id_services_personal'),
             'id_turn' => Yii::t('programation', 'id_turn'),
+            'cupo_limit' => Yii::t('programation', 'cupo_limit'),
             //'created_by' => 'Created By',
             //'created_date' => 'Created Date',
             //'modified_by' => 'Modified By',
@@ -88,7 +111,24 @@ class Programation extends \yii\db\ActiveRecord
         ];
     }
 
-    public function getServices()
+    public function getStaffMedName()
+    {
+        $staff = StaffMed::find()->where([
+            'id' => $this->staff,
+        ])->one();
+        return $staff['name_staff_med'];
+    }
+
+    public function getServiceName()
+    {
+        $service = Services::find()->where([
+            'id' => $this->service,
+        ])->one();
+        return $service['name'];
+    }
+
+
+    public function getAllServices()
     {
         $out = new Query();
         $serviceStaff = $out->select(['s.id as id', 's.name as name'])
@@ -121,4 +161,6 @@ class Programation extends \yii\db\ActiveRecord
             'id_staff_med' => $idStaff,
         ])->one();
     }
+
+
 }

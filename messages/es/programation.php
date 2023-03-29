@@ -7,6 +7,7 @@ return [
     'Programation' => 'Programación',
     'staff' => 'Personal Médico',
     'service' => 'Servicio',
+    'cupo_limit' => 'Limite de Cupos'
 
     //'created_by' => 'Created By',
     //'created_date' => 'Created Date',
