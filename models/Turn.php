@@ -54,7 +54,7 @@ class Turn extends \yii\db\ActiveRecord
     {
         return [
             [['hour_begin', 'hour_end', 'name_turn' ], 'required'],
-            //[['name_turn'], 'string', 'max' => 50],
+            [['name_turn'], 'string', 'max' => 50],
         ];
     }
 

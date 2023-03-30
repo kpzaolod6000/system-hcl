@@ -1,9 +1,9 @@
 <?php 
 return [
     'id' => 'Codigo de programación',
-    'date_program' => 'Fecha de atención',
+    'date_program' => 'Fecha',
     'id_services_personal' => 'Codigo de servicio personal',
-    'id_turn' => 'Codigo de turno',
+    'id_turn' => 'Turnos',
     'Programation' => 'Programación',
     'staff' => 'Personal Médico',
     'service' => 'Servicio',

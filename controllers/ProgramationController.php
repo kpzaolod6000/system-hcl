@@ -10,7 +10,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use yii\db\Query;
 
 /**
  * ProgramationController implements the CRUD actions for Programation model.
@@ -88,7 +87,6 @@ class ProgramationController extends Controller
     public function actionCreate()
     {
         $model = new Programation();
-        $model->status = Programation::$status_st;
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -133,8 +131,9 @@ class ProgramationController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        
+        return json_encode(['status'=>'ok']);
+        // return $this->redirect(['index']);
     }
 
     /**
@@ -190,11 +189,11 @@ class ProgramationController extends Controller
             $Event->id = $row->id;
             $Event->start = $row->date_program;
             if ($row->id_turn == 1) {
-                $Event->title = "Turno Mañana-\nNro Cupos: ". $row->cupo_limit;
-                $Event->color = '#581845';
+                $Event->title = Programation::$turn_m."-\nNro Cupos: ". $row->cupo_limit;
+                $Event->color = '#1a5276';
             }else{
-                $Event->title = "Turno Tarde-\nNro Cupos: ". $row->cupo_limit;
-                $Event->color = '#900C3F';
+                $Event->title = Programation::$turn_t."-\nNro Cupos: ". $row->cupo_limit;
+                $Event->color = '#0e6655';
             }
             // $Event->editable = true;
             // $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($row->date_start.' '.$row->time_start));
@@ -216,25 +215,58 @@ class ProgramationController extends Controller
             'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
                 [
                     'idService' => $formData['service'],
-                    'idStaff' => $formData['staff']
+                    'idStaff' => $formData['staff'],
+                    'tt' => Programation::$turn_t,
+                    'tm' => Programation::$turn_m
                 ])
         ]);
     }
 
-    public function actionDataProgramation($id){
+    public function actionDataProgramation($id=NULL){
         
-        $modelProg = $this->findModel($id);
-        $modelServicePersonal = ServicesPersonal::findOne($modelProg['id_services_personal']);
-        $modelProg->staff = $modelServicePersonal['id_staff_med'];
-        $modelProg->service = $modelServicePersonal['id_services'];
+        if (!is_null($id)) {
+            $modelProg = $this->findModel($id);
+            $modelServicePersonal = ServicesPersonal::findOne($modelProg['id_services_personal']);
+            $modelProg->staff = $modelServicePersonal['id_staff_med'];
+            $modelProg->service = $modelServicePersonal['id_services'];
 
-        return json_encode([
-            'status'=>'ok',
-            'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
-                [
-                    'model' => $modelProg
-                ])
-        ]);
+            return json_encode([
+                'status'=>'ok',
+                'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
+                    [
+                        'model' => $modelProg
+                    ])
+            ]);
+        }else{
+            if($this->request->isPost){
+
+                $data = Yii::$app->request->post();
+                $modelProg = new Programation();
+                $modelServStaff = $modelProg->getIdServicePersonal($data['idService'],$data['idStaff']);
+                
+                $modelProg->date_program = $data['date'];
+                $modelProg->status = Programation::$status_st;
+                $modelProg->id_services_personal = $modelServStaff['id'];
+                $modelProg->staff = $data['idStaff']; 
+                $modelProg->service = $data['idService'];
+                
+                if ($data['id_turn'] < 2) {
+                    $modelProg->id_turn = $data['id_turn'] == 1 ? 0 : 1;
+                }else{
+                    $modelProg->id_turn = $data['id_turn'];
+                }
+                
+                return json_encode([
+                    'status'=>'ok',
+                    'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
+                        [
+                            'model' => $modelProg
+                        ])
+                ]);
+            }else {
+                $this->loadDefaultValues();
+            }
+        }
     }
 
     public function actionCreateProgramation($id=NULL,$idStaff=NULL,$idService=NULL){
@@ -255,13 +287,37 @@ class ProgramationController extends Controller
                     'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
                         [
                             'idService' => $idService,
-                            'idStaff' => $idStaff
+                            'idStaff' => $idStaff,
+                            'tt' => Programation::$turn_t,
+                            'tm' => Programation::$turn_m
                         ])
                 ]);
+            }else {
+                $modelProg->loadDefaultValues();
             }
 
         }else{
+            $modelProg = new Programation();
 
+            if ($this->request->isPost) {
+                if ($modelProg->load($this->request->post()) && $modelProg->save()) {
+                    return json_encode([
+                        'status'=>'ok',
+                        'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
+                            [
+                                'idService' => $idService,
+                                'idStaff' => $idStaff,
+                                'tt' => Programation::$turn_t,
+                                'tm' => Programation::$turn_m
+                            ])
+                    ]);
+                }else{
+                    print_r($modelProg->errors);
+                }
+            } else {
+                $modelProg->loadDefaultValues();
+            }
+            
         }
         
         

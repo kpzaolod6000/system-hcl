@@ -30,6 +30,8 @@ class Programation extends \yii\db\ActiveRecord
     static $status_up = "MODIFICADO";
     static $status_en = "FINALIZADO";
     static $status_de = "ELIMINADO";
+    static $turn_m = "Turno Mañana";
+    static $turn_t = "Turno Tarde";
     
     public function setStatusCreate(){
         $this->status = Programation::$status_st;
@@ -86,7 +88,7 @@ class Programation extends \yii\db\ActiveRecord
         return [
             //[['date_program', 'created_date', 'modified_date'], 'safe'],
             [['status','cupo_limit'], 'required','on'=>'update'],
-            [['id_services_personal', 'date_program', 'id_turn', 'service', 'staff', 'status'], 'required'],
+            [['id_services_personal', 'date_program', 'id_turn', 'service', 'staff', 'status','cupo_limit'], 'required'],
             [['id_services_personal', 'id_turn', 'service', 'staff', 'cupo_limit'], 'integer'],
         ];
     }
