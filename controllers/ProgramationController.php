@@ -155,6 +155,12 @@ class ProgramationController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    /**
+     * Finds medical staff by services
+     * If there are data in the Post, returns the list
+     * @param null
+     * @return Stafflist a list by Services
+     */
     public function actionSearchStaffs() {
         
         $out = [];
@@ -174,7 +180,13 @@ class ProgramationController extends Controller
         return \yii\helpers\Json::encode(['output'=>'', 'selected'=>'']);
     }
 
-
+    /**
+     * Show the calendar events
+     * If the method is by-service-staff, filters by services and staff but
+     * If the method is by-service, only filters by services
+     * @param string $idService, string $idStaff, string $method
+     * @return ProgamationEvents a list of programming events
+     */
     public function actionCalendarProgramation($idService,$idStaff = NULL,$method){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -196,8 +208,7 @@ class ProgramationController extends Controller
         //     print_r($model->getAttributes());
         //     echo "<br>";
         // }
-        
-        // // var_dump($modelProg);
+        // var_dump($modelProg);
         // $times = \app\modules\timetrack\models\Timetable::find()->where(array('category'=>\app\modules\timetrack\models\Timetable::CAT_TIMETRACK))->all();
         $programation = [];
 
@@ -226,13 +237,18 @@ class ProgramationController extends Controller
         return $programation;
     }
 
+    /**
+     * Will display the view "view_program_by_service_staff" or "view_program_by_service_staff" depending on the method
+     * @param string $method,
+     * @return string|\yii\web\Response a calendar view
+     */
     public function actionShowCalendarProgramation($method){
         
         
         $data = Yii::$app->request->post();
 
         $formData = $data['Programation'];
-        if ($method == "by-service-staff" ) { // si solo envia un parametro
+        if ($method == "by-service-staff" ) {
             return json_encode([
                 'status'=>'ok',
                 'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
@@ -321,7 +337,14 @@ class ProgramationController extends Controller
         }
     }
 
-    public function actionCreateProgramation($id=NULL,$idStaff=NULL,$idService=NULL,$method){
+     /**
+     * Save or Update a programation event.
+     * If $id is successful, update the event and it will be renders the view "view_form_add_program".
+     * If $id is unsuccessful,save the event and will be renders the view "view_form_add_program".
+     * @param int $id ID, string $idService, string $idStaff, string $method
+     * @return string|\yii\web\Response depending to the method
+     */
+    public function actionCreateProgramation($id=NULL,$idService=NULL,$idStaff=NULL,$method){
         
         if(!is_null($id)){
 

@@ -126,6 +126,11 @@ class Programation extends \yii\db\ActiveRecord
         return $this->hasOne(ServicesPersonal::class, ['id' => 'id_services_personal']);
     }
 
+    /**
+     * Returns the staff name
+     * @param null
+     * @return string| StaffMed name
+     */
     public function getStaffMedName()
     {
         $staff = StaffMed::find()->where([
@@ -134,6 +139,12 @@ class Programation extends \yii\db\ActiveRecord
         return $staff['name_staff_med'];
     }
 
+    
+    /**
+     * Returns the service name
+     * @param null
+     * @return string| Services name
+     */
     public function getServiceName()
     {
         $service = Services::find()->where([
@@ -143,6 +154,11 @@ class Programation extends \yii\db\ActiveRecord
     }
 
 
+    /**
+     * Returns the Services
+     * @param null
+     * @return ArrayHelper| Services id and name
+     */
     public function getAllServices()
     {
         $out = new Query();
@@ -156,6 +172,11 @@ class Programation extends \yii\db\ActiveRecord
         return ArrayHelper::map($data, 'id', 'name');
     }
 
+    /**
+     * Returns the Staff data
+     * @param int $cat_id
+     * @return object| \yii\db\Query Staff id and name
+     */
     public static function getStaffsbyService($cat_id)
     {
         $out = new Query();
@@ -169,6 +190,11 @@ class Programation extends \yii\db\ActiveRecord
         return $data;
     }
 
+    /**
+     * Returns the ServicesPersonal data by service and staff
+     * @param string $idService, string $idStaff
+     * @return object| \yii\db\ActiveQuery 
+     */
     public static function getIdServicePersonal($idService, $idStaff)
     {
         return ServicesPersonal::find()->where([
@@ -177,6 +203,11 @@ class Programation extends \yii\db\ActiveRecord
         ])->one();
     }
 
+    /**
+     * Returns the ServicesPersonal data by service
+     * @param string $idService
+     * @return object| \yii\db\ActiveQuery 
+     */
     public static function getIdByServices($idService){
         return ServicesPersonal::find()->where([
             'id_services' => $idService
