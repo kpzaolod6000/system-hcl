@@ -85,14 +85,13 @@ $js='';
 
 $js.=<<<EOT
 
-$('#programation-staff').on('select2:select', function (e) {
-
+function connectShowCalendarProgram(method){
     const idStaff = document.getElementById('programation-staff').value;
     const idService = document.getElementById('programation-service').value;
 
     if(idStaff != null|| idService != null){
         $.ajax({
-            url: '{$urlCalendarProgram}',
+            url: '{$urlCalendarProgram}' + '&method=' + method,
             global: false,
             cache: false,
             type: "POST",
@@ -102,12 +101,23 @@ $('#programation-staff').on('select2:select', function (e) {
             {
                 if(html.status == 'ok'){
                     $("#program-calendar").html(html.viewProgramCalendar);
+                }else if (html.status == 'fail'){
+                    alert(html.msg);
                 }
-                      
             }
         });
     }
+}
+
+
+$('#programation-staff').on('select2:select', function (e) {
+    connectShowCalendarProgram('by-service-staff');
 });
+
+$('#programation-service').on('select2:select', function (e) {
+    connectShowCalendarProgram('by-service');
+});
+
 
 
 EOT;

@@ -75,4 +75,9 @@ class ServicesPersonal extends \yii\db\ActiveRecord
         return $this->hasMany(Programation::className(), ['id_services_personal' => 'id']);
     }
 
+    public function getStaffMed()
+    {
+        return $this->hasOne(StaffMed::className(), ['id' => 'id_staff_med']);   
+    }
+
 }

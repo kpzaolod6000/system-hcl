@@ -10,6 +10,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use yii\db\ActiveQuery;
+
+
 
 /**
  * ProgramationController implements the CRUD actions for Programation model.
@@ -172,15 +175,29 @@ class ProgramationController extends Controller
     }
 
 
-    public function actionCalendarProgramation($start=NULL,$end=NULL,$_=NULL,$idService,$idStaff){
+    public function actionCalendarProgramation($idService,$idStaff = NULL,$method){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $modelServicePersonal = Programation::getIdServicePersonal($idService,$idStaff);
         
-        $modelProg = Programation::find()
-                                   ->where(['id_services_personal' => $modelServicePersonal['id']])
-                                   ->all();
-    
+        if ($method=="by-service-staff") {
+            $modelServicePersonal = Programation::getIdServicePersonal($idService,$idStaff);
+            $modelProg = Programation::find()
+                                       ->where(['id_services_personal' => $modelServicePersonal['id']])
+                                       ->andWhere(['>=','date_program',date('Y')])
+                                       ->all();
+        }else{
+            $modelProg = Programation::find()
+                                       ->joinWith('servicesPersonal')
+                                       ->andWhere(['id_services' => $idService])
+                                       ->andWhere(['>=','date_program',date('Y')])
+                                       ->all();
+        }
+        // foreach ($modelProg as $model) {
+        //     print_r($model->getAttributes());
+        //     echo "<br>";
+        // }
+        
+        // // var_dump($modelProg);
         // $times = \app\modules\timetrack\models\Timetable::find()->where(array('category'=>\app\modules\timetrack\models\Timetable::CAT_TIMETRACK))->all();
         $programation = [];
 
@@ -188,41 +205,74 @@ class ProgramationController extends Controller
             $Event = new \yii2fullcalendar\models\Event();
             $Event->id = $row->id;
             $Event->start = $row->date_program;
+        
+            if ($method == "by-service")
+                $nameStaff = $row->servicesPersonal->staffMed['name_staff_med'];
+            else
+                $nameStaff = "";
+
             if ($row->id_turn == 1) {
-                $Event->title = Programation::$turn_m."-\nNro Cupos: ". $row->cupo_limit;
-                $Event->color = '#1a5276';
+                $Event->title = Programation::$turn_m."-\nNro Cupos: ". $row->cupo_limit."\n" . $nameStaff;
+                $Event->color = '#b3f2fc';
             }else{
-                $Event->title = Programation::$turn_t."-\nNro Cupos: ". $row->cupo_limit;
-                $Event->color = '#0e6655';
+                $Event->title = Programation::$turn_t."-\nNro Cupos: ". $row->cupo_limit."\n" . $nameStaff;
+                $Event->color = '#dbf1b8';
             }
             // $Event->editable = true;
             // $Event->start = date('Y-m-d\TH:i:s\Z',strtotime($row->date_start.' '.$row->time_start));
             // $Event->end = date('Y-m-d\TH:i:s\Z',strtotime($row->date_end.' '.$time->time_end));
             $programation[] = $Event;
         }
-    
         return $programation;
     }
 
-    public function actionShowCalendarProgramation(){
+    public function actionShowCalendarProgramation($method){
         
         
         $data = Yii::$app->request->post();
+
         $formData = $data['Programation'];
+        if ($method == "by-service-staff" ) { // si solo envia un parametro
+            return json_encode([
+                'status'=>'ok',
+                'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
+                    [
+                        'idService' => $formData['service'],
+                        'idStaff' => $formData['staff'],
+                        'tt' => Programation::$turn_t,
+                        'tm' => Programation::$turn_m,
+                        'method' => $method
+                    ])
+            ]);    
+        }else if ($method == "by-service"){
+
+            return json_encode([
+                'status'=>'ok',
+                'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service',
+                    [
+                        'idService' => $formData['service'],
+                        'tt' => Programation::$turn_t,
+                        'tm' => Programation::$turn_m,
+                        'method' => $method
+                    ])
+            ]);
+        }else {
+            return json_encode([
+                'status'=>'fail',
+                'msg'=> 'Error inesperado'
+            ]);
+        }
         
-        return json_encode([
-            'status'=>'ok',
-            'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
-                [
-                    'idService' => $formData['service'],
-                    'idStaff' => $formData['staff'],
-                    'tt' => Programation::$turn_t,
-                    'tm' => Programation::$turn_m
-                ])
-        ]);
     }
 
-    public function actionDataProgramation($id=NULL){
+    /**
+     * Display modal according to the creation or update of the programming event
+     * If $id is successful, the browser will be renders the view "view_form_add_program" to update the event form.
+     * If $id is unsuccessful ,the browser will be renders the view "view_form_add_program" to create a new event form.
+     * @param int $id ID
+     * @return string|\yii\web\Response
+     */
+    public function actionDisplayModalProgramation($id=NULL,$method){
         
         if (!is_null($id)) {
             $modelProg = $this->findModel($id);
@@ -232,9 +282,10 @@ class ProgramationController extends Controller
 
             return json_encode([
                 'status'=>'ok',
-                'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
+                'viewDataProgram'=>$this->renderAjax('calendar/view_form_add_program',
                     [
-                        'model' => $modelProg
+                        'model' => $modelProg,
+                        'method' => $method
                     ])
             ]);
         }else{
@@ -258,9 +309,10 @@ class ProgramationController extends Controller
                 
                 return json_encode([
                     'status'=>'ok',
-                    'viewDataProgram'=>$this->renderAjax('calendar/view_formaddprogram',
+                    'viewDataProgram'=>$this->renderAjax('calendar/view_form_add_program',
                         [
-                            'model' => $modelProg
+                            'model' => $modelProg,
+                            'method' => $method
                         ])
                 ]);
             }else {
@@ -269,7 +321,7 @@ class ProgramationController extends Controller
         }
     }
 
-    public function actionCreateProgramation($id=NULL,$idStaff=NULL,$idService=NULL){
+    public function actionCreateProgramation($id=NULL,$idStaff=NULL,$idService=NULL,$method){
         
         if(!is_null($id)){
 
@@ -281,17 +333,33 @@ class ProgramationController extends Controller
                 $modelProg->setStatusUpdate();
                 $modelProg->cupo_limit = (int) $data['Programation']['cupo_limit'];
                 $modelProg->update(true,['cupo_limit']);
-            
-                return json_encode([
-                    'status'=>'ok',
-                    'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
-                        [
-                            'idService' => $idService,
-                            'idStaff' => $idStaff,
-                            'tt' => Programation::$turn_t,
-                            'tm' => Programation::$turn_m
-                        ])
-                ]);
+                
+                if ($method == 'by-service-staff') {
+                    return json_encode([
+                        'status'=>'ok',
+                        'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
+                            [
+                                'idService' => $idService,
+                                'idStaff' => $idStaff,
+                                'tt' => Programation::$turn_t,
+                                'tm' => Programation::$turn_m,
+                                'method' => $method
+                            ])
+                    ]);
+                }else {
+                    return json_encode([
+                        'status'=>'ok',
+                        'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service',
+                            [
+                                'idService' => $idService,
+                                'idStaff' => $idStaff,
+                                'tt' => Programation::$turn_t,
+                                'tm' => Programation::$turn_m,
+                                'method' => $method
+                            ])
+                    ]);
+                }
+               
             }else {
                 $modelProg->loadDefaultValues();
             }
@@ -303,12 +371,13 @@ class ProgramationController extends Controller
                 if ($modelProg->load($this->request->post()) && $modelProg->save()) {
                     return json_encode([
                         'status'=>'ok',
-                        'viewProgramCalendar'=>$this->renderAjax('calendar/view_programcalendar',
+                        'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
                             [
                                 'idService' => $idService,
                                 'idStaff' => $idStaff,
                                 'tt' => Programation::$turn_t,
-                                'tm' => Programation::$turn_m
+                                'tm' => Programation::$turn_m,
+                                'method' => $method
                             ])
                     ]);
                 }else{
@@ -319,7 +388,9 @@ class ProgramationController extends Controller
             }
             
         }
-        
-        
+        return json_encode([
+            'status'=>'fail',
+            'msg' => 'Error inesperado'
+        ]);
     }
 }

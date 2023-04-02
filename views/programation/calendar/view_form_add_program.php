@@ -74,14 +74,13 @@ use kartik\builder\Form;
 
 
 <?php
-$urlCreateProgram = Yii::$app->urlManager->createUrl(['programation/create-programation', 'id' => $model->id, 'idStaff' => $model->staff, 'idService' => $model->service]);
+$urlCreateProgram = Yii::$app->urlManager->createUrl(['programation/create-programation', 'id' => $model->id, 'idStaff' => $model->staff, 'idService' => $model->service, 'method' => $method]);
 
 $jsA = '';
 
 $jsA .= <<<EOT
 
-$('#update-program').on('click',function(e) {
-
+function runCreatePro(){
   $.ajax({
     url: '{$urlCreateProgram}',
     global: false,
@@ -94,28 +93,26 @@ $('#update-program').on('click',function(e) {
         if(html.status == 'ok'){
           $("#modalEvent").modal("hide");          
           $("#program-calendar").html(html.viewProgramCalendar);
+        }else {
+          alert(html.msg);
         }
     }
   });
+};
+
+
+$('#update-program').on('click',function(e) {
+  runCreatePro();
 });
 
 $('#save-program').on('click',function(e) {
+  runCreatePro();
+});
 
-  $.ajax({
-    url: '{$urlCreateProgram}',
-    global: false,
-    cache: false,
-    type: "POST",
-    dataType:"json",
-    data:$("form#frm_form_programation_add").serialize(),
-    success: function(html)
-    {
-        if(html.status == 'ok'){
-          $("#modalEvent").modal("hide");          
-          $("#program-calendar").html(html.viewProgramCalendar);
-        }
-    }
-  });
+$("#programation-cupo_limit").on('keypress',function(e){
+  if(e.keyCode==13){
+    runCreatePro();
+  }
 });
 
 EOT;

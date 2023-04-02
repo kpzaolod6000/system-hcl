@@ -30,29 +30,32 @@ class Programation extends \yii\db\ActiveRecord
     static $status_up = "MODIFICADO";
     static $status_en = "FINALIZADO";
     static $status_de = "ELIMINADO";
-    static $turn_m = "Turno Mañana";
-    static $turn_t = "Turno Tarde";
-    
-    public function setStatusCreate(){
+    static $turn_m = "MAÑANA";
+    static $turn_t = "TARDE";
+
+    public function setStatusCreate()
+    {
         $this->status = Programation::$status_st;
-        $this->update(true,['status']);
+        $this->update(true, ['status']);
     }
 
-    public function setStatusUpdate(){
+    public function setStatusUpdate()
+    {
         $this->status = Programation::$status_up;
-        $this->update(true,['status']);
+        $this->update(true, ['status']);
     }
 
-    public function setStatusEnd(){
+    public function setStatusEnd()
+    {
         $this->status = Programation::$status_en;
-        $this->update(true,['status']);
-    }
-    
-    public function setStatusDelete(){
-        $this->status = Programation::$status_de;
-        $this->update(true,['status']);
+        $this->update(true, ['status']);
     }
 
+    public function setStatusDelete()
+    {
+        $this->status = Programation::$status_de;
+        $this->update(true, ['status']);
+    }
 
     public function behaviors()
     {
@@ -87,8 +90,8 @@ class Programation extends \yii\db\ActiveRecord
     {
         return [
             //[['date_program', 'created_date', 'modified_date'], 'safe'],
-            [['status','cupo_limit'], 'required','on'=>'update'],
-            [['id_services_personal', 'date_program', 'id_turn', 'service', 'staff', 'status','cupo_limit'], 'required'],
+            [['status', 'cupo_limit'], 'required', 'on' => 'update'],
+            [['id_services_personal', 'date_program', 'id_turn', 'service', 'staff', 'status', 'cupo_limit'], 'required'],
             [['id_services_personal', 'id_turn', 'service', 'staff', 'cupo_limit'], 'integer'],
         ];
     }
@@ -111,6 +114,16 @@ class Programation extends \yii\db\ActiveRecord
             //'modified_by' => 'Modified By',
             //'modified_date' => 'Modified Date',
         ];
+    }
+
+    /**
+     * Gets query for [[ServicesPersonal]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getServicesPersonal()
+    {
+        return $this->hasOne(ServicesPersonal::class, ['id' => 'id_services_personal']);
     }
 
     public function getStaffMedName()
@@ -160,9 +173,13 @@ class Programation extends \yii\db\ActiveRecord
     {
         return ServicesPersonal::find()->where([
             'id_services' => $idService,
-            'id_staff_med' => $idStaff,
+            'id_staff_med' => $idStaff
         ])->one();
     }
 
-
+    public static function getIdByServices($idService){
+        return ServicesPersonal::find()->where([
+            'id_services' => $idService
+        ])->all();
+    }
 }
