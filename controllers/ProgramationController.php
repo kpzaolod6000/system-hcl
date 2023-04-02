@@ -185,9 +185,9 @@ class ProgramationController extends Controller
      * If the method is by-service-staff, filters by services and staff but
      * If the method is by-service, only filters by services
      * @param string $idService, string $idStaff, string $method
-     * @return ProgamationEvents a list of programming events
+     * @return EventObject a list of programming events
      */
-    public function actionCalendarProgramation($idService,$idStaff = NULL,$method){
+    public function actionCalendarProgramation($start=NULL,$end=NULL,$_=NULL,$idService,$idStaff = NULL,$method){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
@@ -195,13 +195,13 @@ class ProgramationController extends Controller
             $modelServicePersonal = Programation::getIdServicePersonal($idService,$idStaff);
             $modelProg = Programation::find()
                                        ->where(['id_services_personal' => $modelServicePersonal['id']])
-                                       ->andWhere(['>=','date_program',date('Y')])
+                                       ->andWhere(['between', 'date_program', $start, $end])
                                        ->all();
         }else{
             $modelProg = Programation::find()
                                        ->joinWith('servicesPersonal')
                                        ->andWhere(['id_services' => $idService])
-                                       ->andWhere(['>=','date_program',date('Y')])
+                                       ->andWhere(['between', 'date_program', $start, $end])
                                        ->all();
         }
         // foreach ($modelProg as $model) {
@@ -257,7 +257,8 @@ class ProgramationController extends Controller
                         'idStaff' => $formData['staff'],
                         'tt' => Programation::$turn_t,
                         'tm' => Programation::$turn_m,
-                        'method' => $method
+                        'method' => $method,
+                        'dateCurrent' => date('Y-m-d')
                     ])
             ]);    
         }else if ($method == "by-service"){
@@ -269,7 +270,8 @@ class ProgramationController extends Controller
                         'idService' => $formData['service'],
                         'tt' => Programation::$turn_t,
                         'tm' => Programation::$turn_m,
-                        'method' => $method
+                        'method' => $method,
+                        'dateCurrent' => date('Y-m-d')
                     ])
             ]);
         }else {
@@ -341,10 +343,10 @@ class ProgramationController extends Controller
      * Save or Update a programation event.
      * If $id is successful, update the event and it will be renders the view "view_form_add_program".
      * If $id is unsuccessful,save the event and will be renders the view "view_form_add_program".
-     * @param int $id ID, string $idService, string $idStaff, string $method
+     * @param int $id ID, string $idService, string $idStaff, string $method, date(y-m-d) $dateCurrent
      * @return string|\yii\web\Response depending to the method
      */
-    public function actionCreateProgramation($id=NULL,$idService=NULL,$idStaff=NULL,$method){
+    public function actionCreateProgramation($id=NULL,$idService=NULL,$idStaff=NULL,$method,$dateCurrent){
         
         if(!is_null($id)){
 
@@ -366,7 +368,8 @@ class ProgramationController extends Controller
                                 'idStaff' => $idStaff,
                                 'tt' => Programation::$turn_t,
                                 'tm' => Programation::$turn_m,
-                                'method' => $method
+                                'method' => $method,
+                                'dateCurrent' =>$dateCurrent
                             ])
                     ]);
                 }else {
@@ -378,7 +381,8 @@ class ProgramationController extends Controller
                                 'idStaff' => $idStaff,
                                 'tt' => Programation::$turn_t,
                                 'tm' => Programation::$turn_m,
-                                'method' => $method
+                                'method' => $method,
+                                'dateCurrent' =>$dateCurrent
                             ])
                     ]);
                 }
@@ -400,7 +404,8 @@ class ProgramationController extends Controller
                                 'idStaff' => $idStaff,
                                 'tt' => Programation::$turn_t,
                                 'tm' => Programation::$turn_m,
-                                'method' => $method
+                                'method' => $method,
+                                'dateCurrent' =>$dateCurrent
                             ])
                     ]);
                 }else{

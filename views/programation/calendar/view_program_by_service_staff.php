@@ -52,49 +52,45 @@ use yii\web\JsExpression;
             $createEvent = <<< JS
                 function(date, jsEvent, view) {
 
-                    if (date.isSame(view.intervalStart, "month")) {
-                        const events = [...$("#fullcalendar-programation").fullCalendar("clientEvents")];
-                        const nEvents = events.reduce((acumulator, event) => {
-                            if(event.start.isSame(date, "day")) acumulator.push(event);
-                            return acumulator;
-                        },[]);
-                        
-                        const date_ = date.format();
-                        let turn=999;
+                    const events = [...$("#fullcalendar-programation").fullCalendar("clientEvents")];
+                    const nEvents = events.reduce((acumulator, event) => {
+                        if(event.start.isSame(date, "day")) acumulator.push(event);
+                        return acumulator;
+                    },[]);
+                    
+                    const date_ = date.format();
+                    let turn=999;
 
-                        if (nEvents.length == 1) {
-                            const turn_current = ((nEvents[0].title).split("-"))[0];
-                            turn = "{$tm}" == turn_current ? 1 : 0 ;
-                        }
+                    if (nEvents.length == 1) {
+                        const turn_current = ((nEvents[0].title).split("-"))[0];
+                        turn = "{$tm}" == turn_current ? 1 : 0 ;
+                    }
 
-                        if (nEvents.length < 2) {
-                            $.ajax({
-                                url: "{$urlDataProgram}",
-                                global: false,
-                                cache: false,
-                                type: "POST",
-                                dataType:"json",
-                                data: {
-                                    date: date_,
-                                    idService: $idService,
-                                    idStaff: $idStaff,
-                                    id_turn: turn
-                                },
-                                success: function(html)
-                                {
-                                    if(html.status == "ok"){
-                                        $("#modalEvent").modal("show");
-                                        $("#modalEvent-label").html("<h4>AGREGAR PROGRAMACION</h4>");
-                                        $("#modalContent").html(html.viewDataProgram);
-                                    }
+                    if (nEvents.length < 2) {
+                        $.ajax({
+                            url: "{$urlDataProgram}",
+                            global: false,
+                            cache: false,
+                            type: "POST",
+                            dataType:"json",
+                            data: {
+                                date: date_,
+                                idService: $idService,
+                                idStaff: $idStaff,
+                                id_turn: turn
+                            },
+                            success: function(html)
+                            {
+                                if(html.status == "ok"){
+                                    $("#modalEvent").modal("show");
+                                    $("#modalEvent-label").html("<h4>AGREGAR PROGRAMACION</h4>");
+                                    $("#modalContent").html(html.viewDataProgram);
                                 }
-                            });
+                            }
+                        });
 
                     }else {
                         alert("La programacion esta completa");//poner un mejor alert en javascript :)
-                    }
-                    } else {
-                        alert("Este día no está disponible para la selección.");//poner un mejor alert en javascript :)
                     }
                 }
             JS;
@@ -171,8 +167,10 @@ use yii\web\JsExpression;
                     'lang' => 'es',
                     //... more options to be defined here!
                 ],
-                
                 'clientOptions' => [
+                    'lazyFetching' => true,
+                    'defaultDate' => $dateCurrent,
+                    
                     'eventLimit' => 2,
                     'eventLimitClick' => 'popover', // mostrar los eventos adicionales en un popover
                     'eventLimitText' => 'Existen mas programaciones de lo habitual', // texto del enlace "más"

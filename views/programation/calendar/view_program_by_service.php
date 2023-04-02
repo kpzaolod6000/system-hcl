@@ -130,6 +130,8 @@ use yii\web\JsExpression;
                 ],
                 
                 'clientOptions' => [
+                    'lazyFetching' => true,
+                    'defaultDate' => $dateCurrent,
                     'eventLimit' => 2,
                     'eventLimitClick' => 'popover', // mostrar los eventos adicionales en un popover
                     'eventLimitText' => 'más', // texto del enlace "más"

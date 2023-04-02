@@ -80,9 +80,13 @@ $jsA = '';
 
 $jsA .= <<<EOT
 
+var calendar = $('#fullcalendar-programation');
+var view = calendar.fullCalendar('getView');
+var dateCurrent = view.intervalStart.format('YYYY-MM-DD');
+
 function runCreatePro(){
   $.ajax({
-    url: '{$urlCreateProgram}',
+    url: '{$urlCreateProgram}' + '&dateCurrent='+ dateCurrent,
     global: false,
     cache: false,
     type: "POST",
