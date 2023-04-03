@@ -355,13 +355,19 @@ class ProgramationController extends Controller
             if($this->request->isPost){
                 
                 $data = Yii::$app->request->post();
-                $modelProg->setStatusUpdate();
                 $modelProg->cupo_limit = (int) $data['Programation']['cupo_limit'];
-                $modelProg->update(true,['cupo_limit']);
+                if (!$modelProg->update(true,['cupo_limit'])) {
+                    return json_encode([
+                        'status'=>'fail',
+                        'msg' => 'Limite de cupo debe ser un número entero'
+                    ]);
+                }
+                $modelProg->setStatusUpdate();
                 
                 if ($method == 'by-service-staff') {
                     return json_encode([
                         'status'=>'ok',
+                        'msg'=> "Programacion: " . $modelProg->id . " Actualizada",
                         'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
                             [
                                 'idService' => $idService,
@@ -375,6 +381,7 @@ class ProgramationController extends Controller
                 }else {
                     return json_encode([
                         'status'=>'ok',
+                        'msg'=> "Programacion: " . $modelProg->id . " Actualizada",
                         'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service',
                             [
                                 'idService' => $idService,
@@ -388,7 +395,11 @@ class ProgramationController extends Controller
                 }
                
             }else {
-                $modelProg->loadDefaultValues();
+                return json_encode([
+                    'status'=>'fail',
+                    'msg' => 'Error inesperado'
+                ]);
+                // $modelProg->loadDefaultValues();
             }
 
         }else{
@@ -398,6 +409,7 @@ class ProgramationController extends Controller
                 if ($modelProg->load($this->request->post()) && $modelProg->save()) {
                     return json_encode([
                         'status'=>'ok',
+                        'msg'=> "Programacion: " . $modelProg->id . " Creada",
                         'viewProgramCalendar'=>$this->renderAjax('calendar/view_program_by_service_staff',
                             [
                                 'idService' => $idService,
@@ -409,10 +421,10 @@ class ProgramationController extends Controller
                             ])
                     ]);
                 }else{
-                    print_r($modelProg->errors);
+                    // print_r($modelProg->errors);
                 }
             } else {
-                $modelProg->loadDefaultValues();
+                // $modelProg->loadDefaultValues();
             }
             
         }

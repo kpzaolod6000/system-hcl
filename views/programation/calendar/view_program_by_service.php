@@ -23,29 +23,25 @@ use yii\web\JsExpression;
 
                 function(event, jsEvent, view) {
                     // const date_current = event.start._i;
-
-                    if (event.start.isSame(view.intervalStart, "month")) {
-                        const turn_current = ((event.title).split("-"))[0].toUpperCase();
-                        const id_program = event.id;
-                        
-                        $.ajax({
-                            url: "{$urlDataProgram}" + "&id=" + id_program,
-                            global: false,
-                            cache: false,
-                            type: "POST",
-                            dataType:"json",
-                            success: function(html)
-                            {
-                                if(html.status == "ok"){
-                                    $("#modalEvent").modal("show");
-                                    $("#modalEvent-label").html("<h4>ACTUALIZAR PROGRAMACION - "+turn_current+"</h4>");
-                                    $("#modalContent").html(html.viewDataProgram);
-                                }
+                    const turn_current = ((event.title).split("-"))[0].toUpperCase();
+                    const id_program = event.id;
+                    
+                    $.ajax({
+                        url: "{$urlDataProgram}" + "&id=" + id_program,
+                        global: false,
+                        cache: false,
+                        type: "POST",
+                        dataType:"json",
+                        success: function(html)
+                        {
+                            if(html.status == "ok"){
+                                $("#modalEvent").modal("show");
+                                $("#modalEvent-label").html("<h4>ACTUALIZAR PROGRAMACION - "+turn_current+"</h4>");
+                                $("#modalContent").html(html.viewDataProgram);
                             }
-                        });
-                    }else{
-                        alert("Este día no está disponible para la selección.");//poner un mejor alert en javascript :)
-                    }
+                        }
+                    });
+                
                 }
             JS;
 
@@ -53,6 +49,16 @@ use yii\web\JsExpression;
             $createEvent = <<< JS
                 function(date, jsEvent, view) {
                     $("#programation-staff").select2("open");
+                    $.notify({
+                        icon: 'bi bi-ok',
+                        title: '<strong>Informacion</strong><br>',
+                        message: "Seleccione el personal médico",
+                        },{
+                            element: 'body',
+                            type: "info",
+                            allow_dismiss: true,
+                            showProgressbar: false,
+                    });
                 }
             JS;
 
@@ -187,4 +193,11 @@ echo '<div id="modalContent"></div>';
 
 Modal::end();
 
+?>
+
+<?php
+$this->registerJsFile(
+    '@web/js/bootstrap-notify.min.js',
+    ['depends' => [\yii\web\JqueryAsset::className()]]
+  );
 ?>

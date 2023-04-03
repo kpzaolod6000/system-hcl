@@ -1,15 +1,14 @@
 <?php
 
-use yii\helpers\Html;
+// use yii\helpers\Html;
 use kartik\form\ActiveForm;
 use kartik\builder\Form;
+use yii\bootstrap5\Html;
 
 /** @var yii\web\View $this */
 /** @var app\models\Programation $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
-
-
 
 <div class="programation-form-add">
   <?php $form = ActiveForm::begin(['id' => 'frm_form_programation_add']); ?>
@@ -85,23 +84,58 @@ var view = calendar.fullCalendar('getView');
 var dateCurrent = view.intervalStart.format('YYYY-MM-DD');
 
 function runCreatePro(){
-  $.ajax({
-    url: '{$urlCreateProgram}' + '&dateCurrent='+ dateCurrent,
-    global: false,
-    cache: false,
-    type: "POST",
-    dataType:"json",
-    data:$("form#frm_form_programation_add").serialize(),
-    success: function(html)
-    {
-        if(html.status == 'ok'){
-          $("#modalEvent").modal("hide");          
-          $("#program-calendar").html(html.viewProgramCalendar);
-        }else {
-          alert(html.msg);
-        }
-    }
-  });
+
+  const li_cupo = document.getElementById('programation-cupo_limit').value;
+  if(li_cupo > 0){
+    $.ajax({
+      url: '{$urlCreateProgram}' + '&dateCurrent='+ dateCurrent,
+      global: false,
+      cache: false,
+      type: "POST",
+      dataType:"json",
+      data:$("form#frm_form_programation_add").serialize(),
+      success: function(html)
+      {
+          if(html.status == 'ok'){
+            $("#modalEvent").modal("hide");          
+            $("#program-calendar").html(html.viewProgramCalendar);
+            $.notify({
+              icon: 'bi bi-ok',
+              title: '<strong>Success!</strong><br>',
+              message: html.msg,
+            },{
+                element: 'body',
+                type: "success",
+                allow_dismiss: true,
+                showProgressbar: false,
+            });
+          }else {
+              $.notify({
+                icon: 'bi bi-plus',
+                title: '<strong>Error!</strong><br>',
+                message: html.msg,
+              },{
+                  element: '#modalEvent',
+                  type: "danger",
+                  allow_dismiss: true,
+                  showProgressbar: false,
+              });
+          }
+      }
+    });
+  }else{
+    $.notify({
+      icon: 'bi bi-plus',
+      title: '<strong>Error!</strong><br>',
+      message: "Limite de cupo debe ser un número entero",
+    },{
+        element: '#modalEvent',
+        type: "danger",
+        allow_dismiss: true,
+        showProgressbar: false,
+    });
+  }
+  
 };
 
 
@@ -126,4 +160,10 @@ $this->registerJs(
   yii\web\View::POS_END,
   'add-programation'
 );
+
+$this->registerJsFile(
+  '@web/js/bootstrap-notify.min.js',
+  ['depends' => [\yii\web\JqueryAsset::className()]]
+);
+
 ?>
