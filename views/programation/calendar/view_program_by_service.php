@@ -153,7 +153,7 @@ use yii\web\JsExpression;
                     'themeSystem' => 'bootstrap4',
                     'bootstrapFontAwesome' => true
                 ],
-                'events' => Yii::$app->urlManager->createUrl(['programation/calendar-programation', 'idService' => $idService, 'method' => $method])
+                'events' => Yii::$app->urlManager->createUrl(['programation/calendar-programation', 'method' => $method, 'idService' => $idService])
 
             ]);
         ?>

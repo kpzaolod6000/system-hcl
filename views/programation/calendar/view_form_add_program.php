@@ -73,7 +73,7 @@ use yii\bootstrap5\Html;
 
 
 <?php
-$urlCreateProgram = Yii::$app->urlManager->createUrl(['programation/create-programation', 'id' => $model->id, 'idStaff' => $model->staff, 'idService' => $model->service, 'method' => $method]);
+$urlCreateProgram = Yii::$app->urlManager->createUrl(['programation/create-programation', 'method' => $method, 'id' => $model->id, 'idService' => $model->service, 'idStaff' => $model->staff]);
 
 $jsA = '';
 

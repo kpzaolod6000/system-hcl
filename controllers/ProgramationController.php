@@ -187,7 +187,7 @@ class ProgramationController extends Controller
      * @param string $idService, string $idStaff, string $method
      * @return EventObject a list of programming events
      */
-    public function actionCalendarProgramation($start=NULL,$end=NULL,$_=NULL,$idService,$idStaff = NULL,$method){
+    public function actionCalendarProgramation($method,$idService,$idStaff = NULL,$start=NULL,$end=NULL,$_=NULL){
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         
@@ -244,7 +244,6 @@ class ProgramationController extends Controller
      */
     public function actionShowCalendarProgramation($method){
         
-        
         $data = Yii::$app->request->post();
 
         $formData = $data['Programation'];
@@ -290,7 +289,7 @@ class ProgramationController extends Controller
      * @param int $id ID
      * @return string|\yii\web\Response
      */
-    public function actionDisplayModalProgramation($id=NULL,$method){
+    public function actionDisplayModalProgramation($method,$id=NULL){
         
         if (!is_null($id)) {
             $modelProg = $this->findModel($id);
@@ -346,7 +345,7 @@ class ProgramationController extends Controller
      * @param int $id ID, string $idService, string $idStaff, string $method, date(y-m-d) $dateCurrent
      * @return string|\yii\web\Response depending to the method
      */
-    public function actionCreateProgramation($id=NULL,$idService=NULL,$idStaff=NULL,$method,$dateCurrent){
+    public function actionCreateProgramation($method,$dateCurrent,$id=NULL,$idService=NULL,$idStaff=NULL){
         
         if(!is_null($id)){
 

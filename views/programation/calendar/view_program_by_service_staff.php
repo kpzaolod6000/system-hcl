@@ -186,7 +186,7 @@ use yii\web\JsExpression;
                     ]
                     
                 ],
-                'events' => Yii::$app->urlManager->createUrl(['programation/calendar-programation', 'idService' => $idService, 'idStaff' => $idStaff, 'method' => $method])
+                'events' => Yii::$app->urlManager->createUrl(['programation/calendar-programation', 'method' => $method, 'idService' => $idService, 'idStaff' => $idStaff])
 
             ]);
         ?>
